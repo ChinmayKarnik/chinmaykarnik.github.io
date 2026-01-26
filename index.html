@@ -2,104 +2,99 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chinmay Karnik – Software Engineer</title>
-
-  <meta name="description" content="Chinmay Karnik – Software Engineer specializing in mobile and web applications. Open to freelance, contract, and collaboration opportunities." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chinmay Karnik</title>
+  <meta name="description" content="Chinmay Karnik – Software Engineer. Building reliable, user-focused applications." />
 
   <style>
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      max-width: 720px;
-      margin: 60px auto;
-      padding: 0 20px;
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
       line-height: 1.6;
-      color: #111;
-      background: #fff;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 24px;
     }
 
     h1 {
-      font-size: 2.2rem;
+      font-size: 3rem;
       margin-bottom: 0.5rem;
+      color: #f8fafc;
     }
 
     h2 {
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: #555;
-      margin-top: 0;
+      margin-top: 3rem;
+      font-size: 1.5rem;
+      color: #f8fafc;
     }
 
     p {
-      margin: 1.2rem 0;
+      max-width: 700px;
+      font-size: 1.05rem;
+      color: #cbd5f5;
     }
 
-    a {
-      color: #0066cc;
+    .links {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .btn {
       text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      background: #1e293b;
+      color: #f8fafc;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      border: 1px solid #334155;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .cta {
-      margin: 2rem 0;
-      padding: 1rem;
-      border: 1px solid #e5e5e5;
-      border-radius: 6px;
-      background: #fafafa;
-    }
-
-    .links a {
-      display: inline-block;
-      margin-right: 16px;
-      margin-top: 8px;
+    .btn:hover {
+      background: #2563eb;
+      border-color: #2563eb;
     }
 
     footer {
       margin-top: 4rem;
       font-size: 0.9rem;
-      color: #777;
+      color: #94a3b8;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h1>Chinmay Karnik</h1>
+    <p>
+      Software engineer focused on building clean, reliable, and user-centric applications.
+      I enjoy working across the stack, shipping real products, and continuously improving
+      systems through thoughtful design and execution.
+    </p>
 
-  <h1>Chinmay Karnik</h1>
-  <h2>Software Engineer</h2>
+    <h2>Get in touch</h2>
+    <p>
+      If you’d like to discuss a project, collaboration, or opportunity, feel free to reach out
+      or book a short call.
+    </p>
 
-  <p>
-    I build reliable, user-focused software with a strong emphasis on clean architecture,
-    performance, and real-world usability.
-  </p>
+    <div class="links">
+      <a class="btn" href="mailto:hello@chinmaykarnik.com">Email</a>
+      <a class="btn" href="https://github.com/ChinmayKarnik" target="_blank">GitHub</a>
+      <a class="btn" href="https://cal.com/chinmay-karnik-6ygfgj/30min" target="_blank">
+        Book a 30-min call
+      </a>
+    </div>
 
-  <p>
-    My work spans mobile and web applications, and I enjoy taking ideas from concept to
-    production-ready systems. I write about my projects, decisions, and learnings as I go.
-  </p>
-
-  <div class="cta">
-    <strong>Want to talk?</strong><br />
-    <a href="https://cal.com/chinmay-karnik-6yfgj/30min" target="_blank">
-      Book a 30-minute intro call →
-    </a>
+    <footer>
+      © 2026 Chinmay Karnik
+    </footer>
   </div>
-
-  <div class="links">
-    <a href="mailto:hello@chinmaykarnik.com">Email</a>
-    <a href="https://github.com/ChinmayKarnik" target="_blank">GitHub</a>
-    <a href="https://dev.to/" target="_blank">Dev.to</a>
-    <!-- Add Upwork / LinkedIn later if you want -->
-  </div>
-
-  <footer>
-    © <span id="year"></span> Chinmay Karnik
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-
 </body>
 </html>
