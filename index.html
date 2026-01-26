@@ -1,62 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chinmay Karnik</title>
-    <meta name="description" content="Software developer building practical, real-world applications." />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chinmay Karnik – Software Engineer</title>
 
-    <style>
-      body {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, Helvetica, Arial, sans-serif;
-        max-width: 720px;
-        margin: 80px auto;
-        padding: 0 20px;
-        line-height: 1.6;
-        color: #111;
-      }
+  <meta name="description" content="Chinmay Karnik – Software Engineer specializing in mobile and web applications. Open to freelance, contract, and collaboration opportunities." />
 
-      h1 {
-        font-size: 2.2rem;
-        margin-bottom: 0.5rem;
-      }
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 720px;
+      margin: 60px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+      color: #111;
+      background: #fff;
+    }
 
-      p {
-        font-size: 1.05rem;
-        margin-bottom: 1.2rem;
-      }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
 
-      .links a {
-        margin-right: 16px;
-        text-decoration: none;
-        color: #0066cc;
-        font-weight: 500;
-      }
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #555;
+      margin-top: 0;
+    }
 
-      .links a:hover {
-        text-decoration: underline;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Chinmay Karnik</h1>
+    p {
+      margin: 1.2rem 0;
+    }
 
-    <p>
-      Software developer focused on building practical, real-world applications.
-      I enjoy working through application architecture, implementation details,
-      and the tradeoffs involved in shipping reliable features.
-    </p>
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
 
-    <p>
-      I write about my projects, technical decisions, and lessons learned while
-      building software.
-    </p>
+    a:hover {
+      text-decoration: underline;
+    }
 
-    <div class="links">
-      <a href="https://github.com/ChinmayKarnik" target="_blank">GitHub</a>
-      <a href="https://dev.to/" target="_blank">dev.to</a>
-      <a href="mailto:hello@chinmaykarnik.com">Email</a>
-    </div>
-  </body>
+    .cta {
+      margin: 2rem 0;
+      padding: 1rem;
+      border: 1px solid #e5e5e5;
+      border-radius: 6px;
+      background: #fafafa;
+    }
+
+    .links a {
+      display: inline-block;
+      margin-right: 16px;
+      margin-top: 8px;
+    }
+
+    footer {
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Chinmay Karnik</h1>
+  <h2>Software Engineer</h2>
+
+  <p>
+    I build reliable, user-focused software with a strong emphasis on clean architecture,
+    performance, and real-world usability.
+  </p>
+
+  <p>
+    My work spans mobile and web applications, and I enjoy taking ideas from concept to
+    production-ready systems. I write about my projects, decisions, and learnings as I go.
+  </p>
+
+  <div class="cta">
+    <strong>Want to talk?</strong><br />
+    <a href="https://cal.com/chinmay-karnik-6yfgj/30min" target="_blank">
+      Book a 30-minute intro call →
+    </a>
+  </div>
+
+  <div class="links">
+    <a href="mailto:hello@chinmaykarnik.com">Email</a>
+    <a href="https://github.com/ChinmayKarnik" target="_blank">GitHub</a>
+    <a href="https://dev.to/" target="_blank">Dev.to</a>
+    <!-- Add Upwork / LinkedIn later if you want -->
+  </div>
+
+  <footer>
+    © <span id="year"></span> Chinmay Karnik
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
 </html>
