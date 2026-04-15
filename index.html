@@ -1,100 +1,564 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Chinmay Karnik</title>
-  <meta name="description" content="Chinmay Karnik – Software Engineer. Building reliable, user-focused applications." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinmay Karnik – React Native Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, sans-serif;
-      background: #0f172a;
-      color: #e5e7eb;
-      line-height: 1.6;
-    }
+        :root {
+            --bg: #0d0d0d;
+            --surface: #161616;
+            --border: #252525;
+            --text: #e8e8e8;
+            --muted: #6b6b6b;
+            --accent: #14b8a6;
+            --accent-dim: rgba(20, 184, 166, 0.12);
+        }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 80px 24px;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-      color: #f8fafc;
-    }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    h2 {
-      margin-top: 3rem;
-      font-size: 1.5rem;
-      color: #f8fafc;
-    }
+        /* ─── HEADER ─── */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            background: rgba(13, 13, 13, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
 
-    p {
-      max-width: 700px;
-      font-size: 1.05rem;
-      color: #cbd5f5;
-    }
+        .header-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-    .links {
-      margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--accent);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
 
-    .btn {
-      text-decoration: none;
-      padding: 12px 18px;
-      border-radius: 8px;
-      background: #1e293b;
-      color: #f8fafc;
-      font-weight: 500;
-      transition: all 0.2s ease;
-      border: 1px solid #334155;
-    }
+        nav {
+            display: flex;
+            gap: 32px;
+        }
 
-    .btn:hover {
-      background: #2563eb;
-      border-color: #2563eb;
-    }
+        nav a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
 
-    footer {
-      margin-top: 4rem;
-      font-size: 0.9rem;
-      color: #94a3b8;
-    }
-  </style>
+        nav a:hover {
+            color: var(--text);
+        }
+
+        /* ─── WRAPPER ─── */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 100px 24px 90px;
+            max-width: 960px;
+            margin: 0 auto;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            color: #ffffff;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            font-size: 16px;
+            color: var(--muted);
+            max-width: 520px;
+            line-height: 1.75;
+            margin-bottom: 44px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background: var(--accent);
+            color: #0d0d0d;
+            padding: 11px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .btn-cta:hover {
+            opacity: 0.85;
+        }
+
+        .btn-ghost {
+            display: inline-block;
+            background: transparent;
+            color: var(--text);
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ─── SECTIONS ─── */
+        .section {
+            padding: 80px 24px;
+            max-width: 960px;
+            margin: 0 auto;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #c0c0c0;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .section-eyebrow::before {
+            content: '// ';
+            color: var(--accent);
+        }
+
+        /* ─── PROJECTS ─── */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .project-item {
+            background: var(--surface);
+            padding: 28px 32px;
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+            transition: background 0.2s;
+        }
+
+        .project-item:hover {
+            background: #1c1c1c;
+        }
+
+        .project-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--muted);
+            min-width: 24px;
+            padding-top: 3px;
+        }
+
+        .project-content {
+            flex: 1;
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            gap: 16px;
+        }
+
+        .project-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .project-link {
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--accent);
+            white-space: nowrap;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .project-link:hover {
+            opacity: 1;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        /* ─── ACHIEVEMENTS ─── */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .achievement-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 28px 24px;
+            transition: border-color 0.2s;
+        }
+
+        .achievement-item:hover {
+            border-color: var(--accent);
+        }
+
+        .ach-platform {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .ach-rating {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .ach-title {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .ach-link {
+            text-decoration: none;
+            font-size: 12px;
+            color: var(--accent);
+            font-weight: 500;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .ach-link:hover {
+            opacity: 1;
+        }
+
+        /* ─── CTA ─── */
+        .cta-section {
+            padding: 80px 24px 100px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .cta-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .cta-left h2 {
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .cta-left p {
+            font-size: 15px;
+            color: var(--muted);
+            max-width: 420px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .cta-email {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cta-email a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .cta-email a:hover {
+            opacity: 0.8;
+        }
+
+        .cta-email span {
+            color: var(--muted);
+        }
+
+        .cta-right {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 24px;
+        }
+
+        .footer-inner {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-inner p {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            font-size: 13px;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 700px) {
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-grid {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cta-right {
+                align-items: flex-start;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .project-item {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Chinmay Karnik</h1>
-    <p>
-      Software engineer focused on building clean, reliable, and user-centric applications.
-      I enjoy working across the stack, shipping real products, and continuously improving
-      systems through thoughtful design and execution.
-    </p>
 
-    <h2>Get in touch</h2>
-    <p>
-      If you’d like to discuss a project, collaboration, or opportunity, feel free to reach out
-      or book a short call.
-    </p>
-
-    <div class="links">
-      <a class="btn" href="mailto:hello@chinmaykarnik.com">Email</a>
-      <a class="btn" href="https://github.com/ChinmayKarnik" target="_blank">GitHub</a>
-      <a class="btn" href="https://cal.com/chinmay-karnik-6ygfgj/30min" target="_blank">
-        Book a 30-min call
-      </a>
+<header>
+    <div class="header-inner">
+        <div class="logo">chinmay.karnik</div>
+        <nav>
+            <a href="#projects">Projects</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </div>
+</header>
 
-    <footer>
-      © 2026 Chinmay Karnik
-    </footer>
-  </div>
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-tag">React Native Developer</div>
+    <h1>Building apps that<br>work at <span>scale.</span></h1>
+    <p class="hero-sub">I've shipped production React Native apps used by millions — at Zepto and Gameskraft. I build fast, maintainable mobile experiences with clean architecture and attention to performance.</p>
+    <div class="hero-actions">
+        <a href="mailto:karnik.chinmay@gmail.com" class="btn-cta">Get in Touch</a>
+        <a href="https://cal.com/chinmay/30min" class="btn-ghost">Schedule a Call</a>
+    </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="section" id="projects">
+    <div class="section-eyebrow">Featured Projects</div>
+    <div class="projects-list">
+        <div class="project-item">
+            <div class="project-num">01</div>
+            <div class="project-content">
+                <div class="project-top">
+                    <div class="project-name">FitForge</div>
+                    <a href="https://github.com/ChinmayKarnik/FitForge" class="project-link" target="_blank">GitHub ↗</a>
+                </div>
+                <p class="project-desc">iOS & Android strength training tracker with workout logging, analytics, and personalized recommendations. MVP in active Play Store beta testing.</p>
+            </div>
+        </div>
+        <div class="project-item">
+            <div class="project-num">02</div>
+            <div class="project-content">
+                <div class="project-top">
+                    <div class="project-name">React Native Firebase FCM</div>
+                    <a href="https://github.com/ChinmayKarnik/react-native-firebase-fcm" class="project-link" target="_blank">GitHub ↗</a>
+                </div>
+                <p class="project-desc">Production-ready Firebase Cloud Messaging implementation for React Native. Handles push notifications reliably across iOS and Android with a clean API.</p>
+            </div>
+        </div>
+        <div class="project-item">
+            <div class="project-num">03</div>
+            <div class="project-content">
+                <div class="project-top">
+                    <div class="project-name">Tooltip</div>
+                    <a href="https://github.com/ChinmayKarnik/Tooltip" class="project-link" target="_blank">GitHub ↗</a>
+                </div>
+                <p class="project-desc">Lightweight, customizable tooltip component for React Native. Zero dependencies, simple API, battle-tested in apps with thousands of daily active users.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div class="section" id="achievements">
+    <div class="section-eyebrow">Competitive Programming</div>
+    <div class="achievements-grid">
+        <div class="achievement-item">
+            <div class="ach-platform">Codeforces</div>
+            <div class="ach-rating">2326</div>
+            <div class="ach-title">International Master</div>
+            <a href="https://codeforces.com/profile/ChinmayKarnik" class="ach-link" target="_blank">View Profile ↗</a>
+        </div>
+        <div class="achievement-item">
+            <div class="ach-platform">CodeChef</div>
+            <div class="ach-rating">2318</div>
+            <div class="ach-title">6-Star Rated</div>
+            <a href="https://www.codechef.com/users/chinmaykarnik" class="ach-link" target="_blank">View Profile ↗</a>
+        </div>
+        <div class="achievement-item">
+            <div class="ach-platform">ACM ICPC</div>
+            <div class="ach-rating">2021</div>
+            <div class="ach-title">Regional Finalist</div>
+            <a href="#" class="ach-link" target="_blank">ACM ICPC ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section" id="contact">
+    <div class="cta-grid">
+        <div class="cta-left">
+            <div class="section-eyebrow">Let's Work Together</div>
+            <h2>Open to freelance<br>and contract work.</h2>
+            <p>React Native apps, architecture consulting, or technical guidance — reach out and let's talk.</p>
+            <div class="cta-email">
+                <span>email →</span>
+                <a href="mailto:karnik.chinmay@gmail.com">karnik.chinmay@gmail.com</a>
+            </div>
+        </div>
+        <div class="cta-right">
+            <a href="https://cal.com/chinmay/30min" class="btn-cta" target="_blank">Book a 30-min Call</a>
+            <a href="https://upwork.com/freelancers/chinmaykarnik" class="btn-ghost" target="_blank">View Upwork Profile</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-inner">
+        <p>© 2026 Chinmay Karnik</p>
+        <div class="footer-links">
+            <a href="https://github.com/ChinmayKarnik" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/chinmaykarnik" target="_blank">LinkedIn</a>
+            <a href="https://upwork.com/freelancers/chinmaykarnik" target="_blank">Upwork</a>
+        </div>
+    </div>
+</footer>
+
 </body>
 </html>
