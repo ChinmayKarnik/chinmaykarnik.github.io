@@ -4,136 +4,338 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chinmay Karnik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: sans-serif; max-width: 900px; margin: 0 auto; padding: 24px; color: #111; }
-        hr { margin: 40px 0; }
-        nav a { margin-right: 16px; }
-        img.screenshot { width: 180px; border: 1px solid #ccc; border-radius: 8px; margin-right: 12px; }
-        .muted { color: #666; font-size: 14px; }
-        .tag { background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-right: 6px; }
-        .section-label { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: #999; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+
+        /* NAV — always dark, matches hero */
+        header { position: sticky; top: 0; z-index: 99; background: rgba(15,23,42,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid #1e293b; }
+        .header-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 15px; font-weight: 700; color: #f8fafc; letter-spacing: -0.3px; text-decoration: none; }
+        nav { display: flex; gap: 28px; }
+        nav a { text-decoration: none; color: #94a3b8; font-size: 14px; font-weight: 500; transition: color 0.15s; }
+        nav a:hover { color: #f8fafc; }
+
+        /* HERO — dark */
+        .hero { background: #0f172a; padding: 100px 24px 90px; border-bottom: 1px solid #1e293b; }
+        .hero-inner { max-width: 960px; margin: 0 auto; }
+        .hero-tag { font-size: 13px; font-weight: 600; color: #60a5fa; letter-spacing: 0.5px; margin-bottom: 20px; }
+        .hero h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 800; line-height: 1.08; letter-spacing: -2px; color: #ffffff; margin-bottom: 24px; }
+        .hero h1 span { color: #60a5fa; }
+        .hero-sub { font-size: 17px; color: #94a3b8; max-width: 520px; line-height: 1.75; margin-bottom: 40px; }
+        .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+        /* BUTTONS — two variants for dark/light contexts */
+        .btn-primary-dark { background: #60a5fa; color: #0f172a; padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; transition: opacity 0.15s; display: inline-block; }
+        .btn-primary-dark:hover { opacity: 0.88; }
+        .btn-secondary-dark { background: transparent; color: #f8fafc; padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none; border: 1px solid #334155; transition: border-color 0.15s; display: inline-block; }
+        .btn-secondary-dark:hover { border-color: #60a5fa; }
+
+        .btn-primary { background: #2563eb; color: #fff; padding: 11px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity 0.15s; display: inline-block; }
+        .btn-primary:hover { opacity: 0.88; }
+        .btn-secondary { background: transparent; color: #0f172a; padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none; border: 1px solid #e2e8f0; transition: border-color 0.15s, color 0.15s; display: inline-block; }
+        .btn-secondary:hover { border-color: #2563eb; color: #2563eb; }
+
+        /* LIGHT BODY */
+        .section { background: #ffffff; padding: 72px 24px; border-bottom: 1px solid #e2e8f0; }
+        .section-inner { max-width: 960px; margin: 0 auto; }
+        .section-label { font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #2563eb; margin-bottom: 32px; }
+
+        /* FITFORGE */
+        .fitforge-hero { text-align: center; margin-bottom: 32px; }
+        .fitforge-hero .section-label { margin-bottom: 18px; }
+        .fitforge-icon { width: 72px; height: 72px; border-radius: 18px; box-shadow: 0 4px 16px rgba(0,0,0,0.14); margin-bottom: 12px; }
+        .fitforge-title { font-size: 34px; font-weight: 800; color: #0f172a; letter-spacing: -1px; line-height: 1; margin-bottom: 12px; }
+        .fitforge-tags { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 14px; }
+        .fitforge-tag { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 20px; letter-spacing: 0.4px; text-transform: uppercase; }
+        .tag-android { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
+        .tag-rn { background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; }
+        .tag-ts { background: #eef2ff; color: #4f46e5; border: 1px solid #c7d2fe; }
+        .fitforge-desc { font-size: 16px; color: #475569; line-height: 1.75; max-width: 490px; margin: 0 auto; }
+        .fitforge-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 32px; margin-bottom: 32px; }
+        .fitforge-stat { background: #f8fafc; border: 1px solid #e2e8f0; border-left: 3px solid #e2e8f0; border-radius: 10px; padding: 18px 20px; }
+        .fitforge-stat:nth-child(1) { border-left-color: #2563eb; }
+        .fitforge-stat:nth-child(2) { border-left-color: #16a34a; }
+        .fitforge-stat:nth-child(3) { border-left-color: #4f46e5; }
+        .fitforge-stat-value { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 5px; letter-spacing: -0.1px; }
+        .fitforge-stat-label { font-size: 12px; color: #64748b; line-height: 1.55; }
+        .fitforge-screenshots { display: flex; gap: 14px; margin-bottom: 28px; }
+        .fitforge-screenshots img { flex: 1; min-width: 0; border-radius: 14px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .fitforge-links { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; justify-content: center; margin-top: 4px; }
+        .btn-store { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border-radius: 10px; text-decoration: none; transition: opacity 0.15s, transform 0.15s; }
+        .btn-store:hover { opacity: 0.88; transform: translateY(-1px); }
+        .btn-store-dark { background: #111827; border: 2px solid #111827; color: #fff; }
+        .btn-store-outline { background: #fff; border: 2px solid #111827; color: #111827; }
+        .btn-store-outline:hover { background: #f8fafc; }
+        .btn-store-icon { width: 22px; height: 22px; flex-shrink: 0; }
+        .btn-store-label { display: flex; flex-direction: column; line-height: 1.25; }
+        .btn-store-sub { font-size: 10px; font-weight: 400; opacity: 0.65; letter-spacing: 0.3px; }
+        .btn-store-main { font-size: 14px; font-weight: 700; letter-spacing: -0.1px; }
+
+        /* OTHER PROJECTS */
+        .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .project-card { padding: 24px 26px; background: #ffffff; border: 1.5px solid #e2e8f0; border-left: 3px solid #6366f1; border-radius: 12px; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: box-shadow 0.2s, border-color 0.2s; }
+        .project-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.09); border-color: #c7d2fe; border-left-color: #6366f1; }
+        .project-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+        .project-num { font-family: 'Courier New', monospace; font-size: 11px; color: #94a3b8; font-weight: 700; letter-spacing: 1px; }
+        .project-gh-btn { display: inline-flex; align-items: center; gap: 5px; color: #475569; font-size: 12px; font-weight: 500; text-decoration: none; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 6px; padding: 5px 10px; transition: border-color 0.15s, color 0.15s; flex-shrink: 0; }
+        .project-gh-btn:hover { border-color: #111827; color: #111827; }
+        .project-gh-icon { width: 13px; height: 13px; flex-shrink: 0; }
+        .project-name { font-size: 17px; font-weight: 700; color: #0f172a; margin-bottom: 8px; letter-spacing: -0.3px; line-height: 1.2; }
+        .project-tag { display: inline-block; font-size: 10px; font-weight: 600; color: #2563eb; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 20px; padding: 2px 8px; letter-spacing: 0.4px; text-transform: uppercase; margin-bottom: 10px; }
+        .project-desc { font-size: 13px; color: #64748b; line-height: 1.7; flex: 1; }
+
+        /* ACHIEVEMENTS — dark band */
+        .section-dark { background: #0f172a; padding: 72px 24px; border-bottom: 1px solid #1e293b; }
+        .section-dark .section-label { color: #60a5fa; }
+        .achievements-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .achievement-item { padding: 28px 24px; background: #1e293b; border: 1px solid #334155; border-radius: 10px; }
+        .ach-platform { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 12px; font-weight: 500; }
+        .ach-rating { font-size: 2.4rem; font-weight: 800; color: #ffffff; line-height: 1; margin-bottom: 4px; letter-spacing: -1px; }
+        .ach-title { font-size: 13px; color: #94a3b8; margin-bottom: 16px; }
+        .ach-link { font-size: 13px; color: #60a5fa; text-decoration: none; font-weight: 500; }
+
+        /* WRITING */
+        .writing-featured { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 28px 32px; display: flex; flex-direction: column; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 14px; }
+        .writing-secondary { background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 12px; padding: 22px 26px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; box-shadow: 0 1px 6px rgba(0,0,0,0.04); margin-bottom: 24px; }
+        .writing-secondary-left { flex: 1; }
+        .writing-secondary-right { font-size: 12px; color: #94a3b8; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; padding-top: 2px; }
+        .badge-case-study { display: inline-block; align-self: flex-start; font-size: 10px; font-weight: 600; color: #2563eb; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 20px; padding: 2px 9px; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 14px; }
+        .badge-deep-dive { display: inline-block; align-self: flex-start; font-size: 10px; font-weight: 600; color: #6366f1; background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 20px; padding: 2px 9px; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 10px; }
+        .writing-title-lg { font-size: 18px; font-weight: 700; color: #0f172a; line-height: 1.4; margin-bottom: 10px; letter-spacing: -0.3px; }
+        .writing-title-sm { font-size: 14px; font-weight: 700; color: #0f172a; line-height: 1.4; margin-bottom: 8px; letter-spacing: -0.2px; }
+        .writing-desc-lg { font-size: 14px; color: #64748b; line-height: 1.7; margin-bottom: 16px; max-width: 680px; }
+        .writing-desc-sm { font-size: 13px; color: #64748b; line-height: 1.65; }
+        .writing-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
+        .wtag { font-size: 10px; font-weight: 600; border-radius: 20px; padding: 3px 9px; letter-spacing: 0.4px; text-transform: uppercase; }
+        .wtag-neutral { color: #475569; background: #f1f5f9; border: 1px solid #e2e8f0; }
+        .wtag-soon { color: #b45309; background: #fffbeb; border: 1px solid #fde68a; }
+        .writing-devto { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: #0f172a; text-decoration: none; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 9px 16px; background: #fff; transition: border-color 0.15s, color 0.15s; }
+        .writing-devto:hover { border-color: #6366f1; color: #6366f1; }
+
+        /* CONTACT */
+        .contact-inner { max-width: 600px; }
+        .contact-inner h2 { font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; color: #0f172a; margin-bottom: 12px; line-height: 1.1; }
+        .contact-inner p { font-size: 15px; color: #64748b; line-height: 1.75; margin-bottom: 24px; }
+        .contact-email-box { display: inline-flex; align-items: center; gap: 10px; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 8px; padding: 10px 16px; margin-bottom: 28px; }
+        .contact-email-box a { font-family: 'Courier New', monospace; font-size: 14px; color: #0f172a; text-decoration: none; font-weight: 600; letter-spacing: -0.2px; }
+        .contact-email-box a:hover { color: #2563eb; }
+        .contact-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+        /* FOOTER — dark */
+        footer { background: #0f172a; padding: 32px 24px; }
+        .footer-inner { max-width: 960px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .footer-inner p { font-size: 13px; color: #475569; }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { font-size: 13px; color: #475569; text-decoration: none; }
+        .footer-links a:hover { color: #94a3b8; }
+
+        @media (max-width: 700px) {
+            .achievements-grid { grid-template-columns: 1fr; }
+            .fitforge-screenshots { flex-direction: column; }
+            nav { display: none; }
+        }
     </style>
 </head>
 <body>
 
-<!-- NAV -->
 <header>
-    <nav>
-        <strong>chinmay.karnik</strong> &nbsp;&nbsp;
-        <a href="#fitforge">FitForge</a>
-        <a href="#projects">Projects</a>
-        <a href="#achievements">Achievements</a>
-        <a href="#writing">Writing</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <div class="header-inner">
+        <a class="logo" href="#">Chinmay Karnik</a>
+        <nav>
+            <a href="#fitforge">FitForge</a>
+            <a href="#projects">Projects</a>
+            <a href="#achievements">Achievements</a>
+            <a href="#writing">Writing</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
 </header>
 
-<hr>
-
-<!-- HERO -->
-<section>
-    <p class="section-label">React Native Developer</p>
-    <h1>Building apps that work at scale.</h1>
-    <p>I've shipped production React Native apps used by millions — at Zepto and Gameskraft. I build fast, maintainable mobile experiences with clean architecture and attention to performance.</p>
-    <br>
-    <a href="mailto:karnik.chinmay@gmail.com">Get in Touch</a> &nbsp;
-    <a href="https://github.com/ChinmayKarnik" target="_blank">GitHub ↗</a>
-</section>
-
-<hr>
-
-<!-- FITFORGE — dedicated section -->
-<section id="fitforge">
-    <p class="section-label">Featured Project</p>
-    <h2>FitForge</h2>
-    <p class="muted">Android · React Native · TypeScript</p>
-    <br>
-    <p>A strength training tracker built to fill a gap no existing app covers well. Log workouts live or after the fact, build custom routines, and track your progression over time. In Play Store beta testing.</p>
-    <br>
-    <div>
-        <img class="screenshot" src="https://raw.githubusercontent.com/ChinmayKarnik/FitForge/main/src/design/screenshots/live-workout-ss.png" alt="Live Workout" />
-        <img class="screenshot" src="https://raw.githubusercontent.com/ChinmayKarnik/FitForge/main/src/design/screenshots/activity-ss.png" alt="Activity" />
-        <img class="screenshot" src="https://raw.githubusercontent.com/ChinmayKarnik/FitForge/main/src/design/screenshots/calendar-ss.png" alt="Calendar" />
+<!-- DARK HERO -->
+<div class="hero">
+    <div class="hero-inner">
+        <div class="hero-tag">React Native Developer</div>
+        <h1>Building apps that<br>work at <span>scale.</span></h1>
+        <p class="hero-sub">I've shipped production React Native apps used by millions — at Zepto and Gameskraft. I build fast, maintainable mobile experiences with clean architecture and attention to performance.</p>
+        <div class="hero-actions">
+            <a href="#contact" class="btn-primary-dark">Get in Touch</a>
+            <a href="https://github.com/ChinmayKarnik" target="_blank" class="btn-secondary-dark">GitHub ↗</a>
+        </div>
     </div>
-    <br>
-    <a href="https://play.google.com/store/apps/details?id=com.fitforgeapp" target="_blank">Play Store ↗</a> &nbsp;
-    <a href="https://github.com/ChinmayKarnik/FitForge" target="_blank">GitHub ↗</a>
-</section>
+</div>
 
-<hr>
+<!-- LIGHT: FITFORGE -->
+<div class="section" id="fitforge">
+    <div class="section-inner">
+        <div class="fitforge-hero">
+            <div class="section-label">Featured Project</div>
+            <img class="fitforge-icon" src="https://raw.githubusercontent.com/ChinmayKarnik/FitForge/main/ios/FitForge/Images.xcassets/AppIcon.appiconset/1024.png" alt="FitForge" />
+            <div class="fitforge-title">FitForge</div>
+            <div class="fitforge-tags">
+                <span class="fitforge-tag tag-android">Android</span>
+                <span class="fitforge-tag tag-rn">React Native</span>
+                <span class="fitforge-tag tag-ts">TypeScript</span>
+            </div>
+            <p class="fitforge-desc">A strength training tracker built to fill a gap no existing app covers well. Log workouts live or after the fact, build custom routines, and track your progression over time.</p>
+        </div>
+        <div class="fitforge-stats">
+            <div class="fitforge-stat">
+                <div class="fitforge-stat-value">3 Workout Modes</div>
+                <div class="fitforge-stat-label">Live, backdated, and routine-based logging</div>
+            </div>
+            <div class="fitforge-stat">
+                <div class="fitforge-stat-value">Progress Analytics</div>
+                <div class="fitforge-stat-label">Calendar, stats & full session history</div>
+            </div>
+            <div class="fitforge-stat">
+                <div class="fitforge-stat-value">Offline-First</div>
+                <div class="fitforge-stat-label">No account or internet required</div>
+            </div>
+        </div>
+        <div class="fitforge-screenshots">
+            <img src="https://raw.githubusercontent.com/ChinmayKarnik/FitForge/main/src/design/screenshots/activity-ss.png" alt="Activity" />
+            <img src="https://raw.githubusercontent.com/ChinmayKarnik/FitForge/main/src/design/screenshots/live-workout-ss.png" alt="Live Workout" />
+            <img src="https://raw.githubusercontent.com/ChinmayKarnik/FitForge/main/src/design/screenshots/calendar-ss.png" alt="Calendar" />
+        </div>
+        <div class="fitforge-links">
+            <a href="https://play.google.com/store/apps/details?id=com.fitforgeapp" target="_blank" class="btn-store btn-store-dark">
+                <svg class="btn-store-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.18 23.5c.3.17.64.2.96.1L15.34 12 3.18.4c-.32-.1-.66-.07-.96.1C1.85.77 1.5 1.38 1.5 2.06v19.88c0 .68.35 1.29.88 1.56z" fill="#EA4335"/>
+                    <path d="M22.06 10.54l-3.13-1.78-3.59 3.24 3.59 3.24 3.16-1.8c.9-.51.9-1.9-.03-2.9z" fill="#FBBC04"/>
+                    <path d="M3.18.4l12.16 11.6 3.59-3.24L5.7.12C5.13-.21 4.4-.1 3.18.4z" fill="#4285F4"/>
+                    <path d="M3.18 23.5c1.22.5 1.95.61 2.52.28l13.23-7.64-3.59-3.24L3.18 24.1v-.6z" fill="#34A853"/>
+                </svg>
+                <div class="btn-store-label">
+                    <span class="btn-store-sub">Get it on</span>
+                    <span class="btn-store-main">Google Play</span>
+                </div>
+            </a>
+            <a href="https://github.com/ChinmayKarnik/FitForge" target="_blank" class="btn-store btn-store-outline">
+                <svg class="btn-store-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                </svg>
+                <div class="btn-store-label">
+                    <span class="btn-store-sub">View source on</span>
+                    <span class="btn-store-main">GitHub</span>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
 
-<!-- OTHER PROJECTS -->
-<section id="projects">
-    <p class="section-label">Other Projects</p>
-    <br>
-    <h3>React Native Firebase FCM</h3>
-    <p>Production-ready Firebase Cloud Messaging implementation for React Native. Handles push notifications reliably across iOS and Android with a clean API.</p>
-    <a href="https://github.com/ChinmayKarnik/react-native-firebase-fcm" target="_blank">GitHub ↗</a>
-    <br><br>
-    <h3>Tooltip</h3>
-    <p>Lightweight, customizable tooltip component for React Native. Zero dependencies, simple API.</p>
-    <a href="https://github.com/ChinmayKarnik/Tooltip" target="_blank">GitHub ↗</a>
-</section>
+<!-- LIGHT: OTHER PROJECTS -->
+<div class="section" id="projects" style="background: #f8fafc;">
+    <div class="section-inner">
+        <div class="section-label">Other Projects</div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-card-top">
+                    <span class="project-num">01</span>
+                    <a href="https://github.com/ChinmayKarnik/react-native-firebase-fcm" target="_blank" class="project-gh-btn">
+                        <svg class="project-gh-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                        GitHub
+                    </a>
+                </div>
+                <div class="project-name">React Native Firebase FCM</div>
+                <p class="project-desc">Production-ready Firebase Cloud Messaging implementation for React Native. Handles push notifications reliably across iOS and Android with a clean API.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-card-top">
+                    <span class="project-num">02</span>
+                    <a href="https://github.com/ChinmayKarnik/Tooltip" target="_blank" class="project-gh-btn">
+                        <svg class="project-gh-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                        GitHub
+                    </a>
+                </div>
+                <div class="project-name">Tooltip</div>
+                <p class="project-desc">Lightweight, customizable tooltip component for React Native. Zero dependencies, simple API, battle-tested in production apps.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-<hr>
+<!-- DARK: ACHIEVEMENTS -->
+<div class="section-dark" id="achievements">
+    <div class="section-inner">
+        <div class="section-label">Competitive Programming</div>
+        <div class="achievements-grid">
+            <div class="achievement-item">
+                <div class="ach-platform">Codeforces</div>
+                <div class="ach-rating">2326</div>
+                <div class="ach-title">International Master</div>
+                <a href="https://codeforces.com/profile/ChinmayKarnik" class="ach-link" target="_blank">View Profile ↗</a>
+            </div>
+            <div class="achievement-item">
+                <div class="ach-platform">CodeChef</div>
+                <div class="ach-rating">2318</div>
+                <div class="ach-title">6-Star Rated</div>
+                <a href="https://www.codechef.com/users/chinmaykarnik" class="ach-link" target="_blank">View Profile ↗</a>
+            </div>
+            <div class="achievement-item">
+                <div class="ach-platform">ACM ICPC</div>
+                <div class="ach-rating">2021</div>
+                <div class="ach-title">Regional Finalist</div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- COMPETITIVE PROGRAMMING -->
-<section id="achievements">
-    <p class="section-label">Competitive Programming</p>
-    <br>
-    <table>
-        <tr>
-            <td style="padding-right: 40px;">
-                <div><strong>Codeforces</strong></div>
-                <div style="font-size: 28px; font-weight: 700;">2326</div>
-                <div class="muted">International Master</div>
-                <a href="https://codeforces.com/profile/ChinmayKarnik" target="_blank">View Profile ↗</a>
-            </td>
-            <td style="padding-right: 40px;">
-                <div><strong>CodeChef</strong></div>
-                <div style="font-size: 28px; font-weight: 700;">2318</div>
-                <div class="muted">6-Star Rated</div>
-                <a href="https://www.codechef.com/users/chinmaykarnik" target="_blank">View Profile ↗</a>
-            </td>
-            <td>
-                <div><strong>ACM ICPC</strong></div>
-                <div style="font-size: 28px; font-weight: 700;">2021</div>
-                <div class="muted">Regional Finalist</div>
-            </td>
-        </tr>
-    </table>
-</section>
+<!-- LIGHT: WRITING -->
+<div class="section" id="writing" style="background: #f8fafc;">
+    <div class="section-inner">
+        <div class="section-label">Writing</div>
+        <div class="writing-featured">
+            <div class="writing-tags" style="margin-top: 0; margin-bottom: 14px;">
+                <span class="badge-case-study" style="margin-bottom: 0;">Case Study</span>
+                <span class="wtag wtag-neutral">React Native</span>
+                <span class="wtag wtag-soon">Coming Soon</span>
+            </div>
+            <div class="writing-title-lg">Building FitForge: lessons from shipping a solo React Native app end-to-end</div>
+            <p class="writing-desc-lg">From first screen to Play Store. The architecture decisions, the screenshot workflow, the deep link rabbit hole, and what I'd do differently.</p>
+        </div>
+        <div class="writing-secondary">
+            <div class="writing-secondary-left">
+                <span class="badge-deep-dive">Deep Dive</span>
+                <div class="writing-title-sm">Android App Links in Production: the complete guide to deep linking that actually works</div>
+                <p class="writing-desc-sm">Google Play re-signs your APK — which means your debug signing fingerprint is wrong. Here's how to get universal links working end-to-end.</p>
+            </div>
+        </div>
+        <a href="https://dev.to/chinmaykarnik" target="_blank" class="writing-devto">More on dev.to ↗</a>
+    </div>
+</div>
 
-<hr>
+<!-- LIGHT: CONTACT -->
+<div class="section" id="contact">
+    <div class="section-inner">
+        <div class="section-label">Contact</div>
+        <div class="contact-inner">
+            <h2>Let's connect.</h2>
+            <p>Whether it's a project, a question, or just to say hello — my inbox is open.</p>
+            <div class="contact-email-box">
+                <a href="mailto:karnik.chinmay@gmail.com">karnik.chinmay@gmail.com</a>
+            </div>
+            <div class="contact-actions">
+                <a href="https://cal.com/chinmay/30min" target="_blank" class="btn-primary">Book a 30-min Call ↗</a>
+                <a href="https://github.com/ChinmayKarnik" target="_blank" class="btn-secondary">GitHub ↗</a>
+                <a href="https://linkedin.com/in/chinmaykarnik" target="_blank" class="btn-secondary">LinkedIn ↗</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- WRITING -->
-<section id="writing">
-    <p class="section-label">Writing</p>
-    <br>
-    <p>Technical articles on React Native, Android development, and building production apps — coming soon on dev.to.</p>
-    <br>
-    <a href="https://dev.to/chinmaykarnik" target="_blank">dev.to ↗</a>
-</section>
-
-<hr>
-
-<!-- CONTACT -->
-<section id="contact">
-    <p class="section-label">Contact</p>
-    <h2>Let's connect.</h2>
-    <p>Whether it's a project, a question, or just to say hello — my inbox is open.</p>
-    <br>
-    <p>Email: <a href="mailto:karnik.chinmay@gmail.com">karnik.chinmay@gmail.com</a></p>
-    <br>
-    <a href="https://github.com/ChinmayKarnik" target="_blank">GitHub ↗</a> &nbsp;
-    <a href="https://linkedin.com/in/chinmaykarnik" target="_blank">LinkedIn ↗</a>
-</section>
-
-<hr>
-
-<!-- FOOTER -->
+<!-- DARK FOOTER -->
 <footer>
-    <p class="muted">© 2026 Chinmay Karnik</p>
+    <div class="footer-inner">
+        <p>© 2026 Chinmay Karnik</p>
+        <div class="footer-links">
+            <a href="https://github.com/ChinmayKarnik" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/chinmaykarnik" target="_blank">LinkedIn</a>
+        </div>
+    </div>
 </footer>
 
 </body>
