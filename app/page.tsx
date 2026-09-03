@@ -1,7 +1,15 @@
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import MainContent from "@/components/MainContent";
+import Footer from "@/components/Footer";
+
 export default function Home() {
   return (
     <main>
-      <h1>Chinmay Karnik</h1>
+      <Header />
+      <Hero />
+      <MainContent />
+      <Footer />
     </main>
   );
 }

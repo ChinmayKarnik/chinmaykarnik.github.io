@@ -8,6 +8,9 @@
 # production
 /build
 
+# internal (private AI-collaboration material, not part of the public site)
+/internal
+
 # misc
 .DS_Store
 *.pem

@@ -1,0 +1,23 @@
+export const colors = {
+  sky: "#a0d4ee",
+  hillLight: "#ddeef8",
+  white: "#ffffff",
+  footerSky: "#8fcceb",
+  footerHillLight: "#b1dff6",
+  brand: "#4242fa",
+  text: "#0a0c10",
+  footerText: "#294e60",
+  textMuted: "#5c6274",
+  textMutedLight: "#7b7c7e",
+  eyebrowPink: "#e60067",
+  pillBg: "#c1e5f8",
+  showMoreBg: "#262d40",
+  rainbow: ["#1e3780", "#1e29a9", "#6f29d2", "#c028b6", "#f82f75"],
+  avatar: {
+    hair: "#4d3a31",
+    skin: "#de9771",
+    sweater: "#ffee49",
+    sweaterShade: "#fad240",
+    pants: "#2f2d2e",
+  },
+} as const;
