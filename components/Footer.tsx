@@ -46,7 +46,7 @@ const FooterMain = styled.div`
   overflow: hidden;
   background: ${colors.footerSky};
   padding-top: 100px;
-  padding-bottom: 40px;
+  padding-bottom: 28px;
 
   @media (max-width: 640px) {
     padding-top: 74px;
