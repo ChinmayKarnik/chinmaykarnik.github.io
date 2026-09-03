@@ -13,8 +13,8 @@ const base = {
 export function SearchIcon({ size = 20 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
-      <circle cx="11" cy="11" r="7" />
-      <line x1="21" y1="21" x2="16.2" y2="16.2" />
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
     </svg>
   );
 }
@@ -22,24 +22,25 @@ export function SearchIcon({ size = 20 }: IconProps) {
 export function SoundIcon({ size = 20 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
-      <path d="M4 9v6h4l5 4V5L8 9H4z" />
-      <path d="M16.5 8.5a5 5 0 0 1 0 7" />
+      <path d="M12.0133 4.60757C11.9149 4.2957 11.5463 4.19331 11.2861 4.39151L5.93425 8.46914C5.84716 8.5355 5.74071 8.57143 5.63123 8.57143H1.5C1.22386 8.57143 1 8.79529 1 9.07143V14.9286C1 15.2047 1.22386 15.4286 1.5 15.4286H5.63123C5.74071 15.4286 5.84716 15.4645 5.93425 15.5309L11.2861 19.6085C11.5463 19.8067 11.9149 19.7043 12.0133 19.3924C12.3582 18.2999 13 15.7612 13 12C13 8.2388 12.3582 5.70014 12.0133 4.60757Z" />
+      <path d="M17.54 8.46002C18.4774 9.39766 19.004 10.6692 19.004 11.995C19.004 13.3208 18.4774 14.5924 17.54 15.53" />
+      <path d="M20.0703 4.92999C21.945 6.80527 22.9982 9.34835 22.9982 12C22.9982 14.6516 21.945 17.1947 20.0703 19.07" />
     </svg>
   );
 }
 
 export function SunIcon({ size = 20 }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
-      <circle cx="12" cy="12" r="4" />
-      <line x1="12" y1="2" x2="12" y2="4" />
-      <line x1="12" y1="20" x2="12" y2="22" />
-      <line x1="4.2" y1="4.2" x2="5.6" y2="5.6" />
-      <line x1="18.4" y1="18.4" x2="19.8" y2="19.8" />
-      <line x1="2" y1="12" x2="4" y2="12" />
-      <line x1="20" y1="12" x2="22" y2="12" />
-      <line x1="4.2" y1="19.8" x2="5.6" y2="18.4" />
-      <line x1="18.4" y1="5.6" x2="19.8" y2="4.2" />
+    <svg width={size} height={size} viewBox="0 0 24 24" style={{ transform: "rotate(90deg)" }}>
+      <circle cx="12" cy="12" r="6" stroke="currentColor" fill="none" strokeWidth={1.8} />
+      <circle cx="22" cy="12" r="1.5" fill="currentColor" />
+      <circle cx="19.0711" cy="19.0711" r="1.5" fill="currentColor" />
+      <circle cx="12" cy="22" r="1.5" fill="currentColor" />
+      <circle cx="4.9289" cy="19.0711" r="1.5" fill="currentColor" />
+      <circle cx="2" cy="12" r="1.5" fill="currentColor" />
+      <circle cx="4.9289" cy="4.9289" r="1.5" fill="currentColor" />
+      <circle cx="12" cy="2" r="1.5" fill="currentColor" />
+      <circle cx="19.0711" cy="4.9289" r="1.5" fill="currentColor" />
     </svg>
   );
 }
@@ -47,9 +48,9 @@ export function SunIcon({ size = 20 }: IconProps) {
 export function RssIcon({ size = 20 }: IconProps) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
-      <path d="M4 4c8.837 0 16 7.163 16 16" />
-      <path d="M4 11c5.523 0 10 4.477 10 10" />
-      <circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none" />
+      <path d="M4 11a9 9 0 0 1 9 9" />
+      <path d="M4 4a16 16 0 0 1 16 16" />
+      <circle cx="5" cy="19" r="1" />
     </svg>
   );
 }

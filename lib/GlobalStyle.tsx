@@ -20,6 +20,8 @@ const GlobalStyle = createGlobalStyle`
     background: ${colors.white};
     font-size: 16px;
     line-height: 24px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   a {

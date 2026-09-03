@@ -2,27 +2,27 @@
 
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
-import { GithubIcon } from "./icons";
+import Container from "./Container";
+import { RssIcon, SearchIcon, SoundIcon, SunIcon } from "./icons";
 
 const Bar = styled.header`
   background: ${colors.sky};
-  padding: 16px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
   position: relative;
   z-index: 2;
+`;
 
-  @media (max-width: 640px) {
-    padding: 16px 16px;
-  }
+const BarInner = styled(Container)`
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding-top: 48px;
+  padding-bottom: 16px;
+  flex-wrap: wrap;
 `;
 
 const Logo = styled.a`
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 36px;
   letter-spacing: -1px;
   color: ${colors.brand};
@@ -31,7 +31,7 @@ const Logo = styled.a`
 
 const Nav = styled.nav`
   display: flex;
-  gap: 32px;
+  gap: 8px;
 
   @media (max-width: 640px) {
     display: none;
@@ -39,10 +39,14 @@ const Nav = styled.nav`
 `;
 
 const NavLink = styled.a`
-  font-size: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 36px;
-  letter-spacing: -1px;
+  line-height: 24px;
+  letter-spacing: normal;
+  text-transform: capitalize;
   color: ${colors.text};
   text-decoration: none;
 
@@ -53,18 +57,26 @@ const NavLink = styled.a`
 
 const IconGroup = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 16px;
   align-items: center;
   color: ${colors.text};
+  margin-left: auto;
 `;
 
 const IconButton = styled.a`
+  width: 32px;
+  height: 32px;
   background: none;
   border: none;
+  border-radius: 1000px;
   padding: 0;
   color: inherit;
   cursor: pointer;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  text-decoration: none;
 `;
 
 const NAV_ITEMS = [
@@ -76,24 +88,30 @@ const NAV_ITEMS = [
 export default function Header() {
   return (
     <Bar>
-      <Logo href="#">Chinmay Karnik</Logo>
-      <Nav>
-        {NAV_ITEMS.map((item) => (
-          <NavLink key={item.label} href={item.href}>
-            {item.label}
-          </NavLink>
-        ))}
-      </Nav>
-      <IconGroup>
-        <IconButton
-          href="https://github.com/ChinmayKarnik"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="GitHub"
-        >
-          <GithubIcon />
-        </IconButton>
-      </IconGroup>
+      <BarInner>
+        <Logo href="#">Chinmay Karnik</Logo>
+        <Nav>
+          {NAV_ITEMS.map((item) => (
+            <NavLink key={item.label} href={item.href}>
+              {item.label}
+            </NavLink>
+          ))}
+        </Nav>
+        <IconGroup>
+          <IconButton as="button" type="button" aria-label="Search">
+            <SearchIcon />
+          </IconButton>
+          <IconButton as="button" type="button" aria-label="Disable sounds">
+            <SoundIcon />
+          </IconButton>
+          <IconButton as="button" type="button" aria-label="Activate dark mode">
+            <SunIcon />
+          </IconButton>
+          <IconButton href="#" aria-label="RSS Feed">
+            <RssIcon />
+          </IconButton>
+        </IconGroup>
+      </BarInner>
     </Bar>
   );
 }
