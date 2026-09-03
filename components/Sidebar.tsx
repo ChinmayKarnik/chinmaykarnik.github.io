@@ -9,17 +9,34 @@ type CPStat = {
   platform: string;
   stat: string;
   detail: string;
+  url?: string;
 };
 
 const CP_STATS: CPStat[] = [
-  { platform: "Codeforces", stat: "2326", detail: "International Master" },
-  { platform: "CodeChef", stat: "2354", detail: "6★ Rated" },
+  {
+    platform: "Codeforces",
+    stat: "2326",
+    detail: "International Master",
+    url: "https://codeforces.com/profile/ChinmayKarnik",
+  },
+  {
+    platform: "CodeChef",
+    stat: "2354",
+    detail: "6★ Rated",
+    url: "https://www.codechef.com/users/chinmaykarnik",
+  },
   { platform: "ACM ICPC", stat: "2021", detail: "Regional Finalist" },
 ];
 
 const POSTS = [
-  { title: "[dev.to post title 1]", url: "https://dev.to/" },
-  { title: "[dev.to post title 2]", url: "https://dev.to/" },
+  {
+    title: "I Built My Own Context Index Before Claude Code Had Skills and Memory",
+    url: "https://dev.to/chinmaykarnik/i-built-my-own-context-index-before-claude-code-had-skills-and-memory-iho",
+  },
+  {
+    title: "I built FitForge because every weight training app came with stuff I didn't ask for",
+    url: "https://dev.to/chinmaykarnik/i-built-fitforge-because-every-weight-training-app-came-with-stuff-i-didnt-ask-for-5573",
+  },
 ];
 
 const SidebarWrapper = styled.aside`
@@ -42,6 +59,11 @@ const StatRow = styled.div`
   background: ${colors.pillBg};
   border-radius: 8px;
   padding: 12px 16px;
+  text-decoration: none;
+
+  &:hover {
+    filter: brightness(0.97);
+  }
 `;
 
 const StatPlatform = styled.span`
@@ -110,7 +132,13 @@ export default function Sidebar() {
         <Eyebrow>Competitive Programming</Eyebrow>
         <StatList>
           {CP_STATS.map((cp) => (
-            <StatRow key={cp.platform}>
+            <StatRow
+              key={cp.platform}
+              as={cp.url ? "a" : "div"}
+              href={cp.url}
+              target={cp.url ? "_blank" : undefined}
+              rel={cp.url ? "noreferrer" : undefined}
+            >
               <StatPlatform>{cp.platform}</StatPlatform>
               <StatValue>
                 <StatNumber>{cp.stat}</StatNumber>
@@ -133,7 +161,7 @@ export default function Sidebar() {
             </PopularItem>
           ))}
         </PopularList>
-        <MoreLink href="https://dev.to/" target="_blank" rel="noreferrer">
+        <MoreLink href="https://dev.to/chinmaykarnik" target="_blank" rel="noreferrer">
           More on dev.to
         </MoreLink>
       </div>

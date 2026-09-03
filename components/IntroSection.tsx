@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
 import Container from "./Container";
@@ -103,26 +104,24 @@ const SecondaryCta = styled.a`
   text-decoration: underline;
 `;
 
-const PhotoPlaceholder = styled.div`
+const PhotoFrame = styled.div`
   flex-shrink: 0;
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: 2px dashed ${colors.footerText};
+  overflow: hidden;
   background: ${colors.hillLight};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: 13px;
-  font-weight: 600;
-  color: ${colors.footerText};
-  padding: 12px;
 
   @media (max-width: 640px) {
     width: 140px;
     height: 140px;
   }
+`;
+
+const PhotoImg = styled(Image)`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export default function IntroSection() {
@@ -133,16 +132,24 @@ export default function IntroSection() {
         <Name>Chinmay Karnik</Name>
         <Tagline>Software Engineer &amp; Competitive Programmer</Tagline>
         <Bio>
-          I build things end-to-end — like FitForge, a strength-training app —
-          and compete in competitive programming, rated across Codeforces,
-          CodeChef, and ACM ICPC. [Draft bio — replace with your own words]
+          Full-stack, AI-native software engineer. Shipped at Zepto and
+          Gameskraft. Codeforces International Master (2326). Building
+          FitForge.
         </Bio>
         <CtaRow>
           <PrimaryCta href="#projects">View Projects</PrimaryCta>
           <SecondaryCta href="#contact">Get in touch</SecondaryCta>
         </CtaRow>
       </TextCol>
-      <PhotoPlaceholder>Profile Photo</PhotoPlaceholder>
+      <PhotoFrame>
+        <PhotoImg
+          src="/profile-photo.jpg"
+          alt="Chinmay Karnik"
+          width={200}
+          height={200}
+          priority
+        />
+      </PhotoFrame>
     </IntroInner>
   );
 }

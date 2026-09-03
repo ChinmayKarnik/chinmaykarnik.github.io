@@ -175,17 +175,25 @@ export default function Footer() {
               <Tagline>Let&apos;s build something — or just say hi.</Tagline>
 
               <ContactList>
-                <ContactLink href="mailto:[your email]">
+                <ContactLink href="mailto:hello@chinmaykarnik.com">
                   <MailIcon size={16} />
-                  [your email]
+                  hello@chinmaykarnik.com
                 </ContactLink>
-                <ContactLink href="#" target="_blank" rel="noreferrer">
+                <ContactLink
+                  href="https://www.linkedin.com/in/chinmay-karnik-25a08615b"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <LinkedinIcon size={16} />
-                  [LinkedIn URL]
+                  LinkedIn
                 </ContactLink>
-                <ContactLink href="#" target="_blank" rel="noreferrer">
+                <ContactLink
+                  href="https://cal.com/chinmay-karnik-6ygfgj/30min"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <ArrowRightIcon size={16} />
-                  Book a call [placeholder]
+                  Book a call
                 </ContactLink>
               </ContactList>
             </BrandColumn>
@@ -215,7 +223,7 @@ export default function Footer() {
                 <GithubIcon />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/chinmay-karnik-25a08615b"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
@@ -224,7 +232,7 @@ export default function Footer() {
                 <LinkedinIcon />
               </a>
               <a
-                href="mailto:[your email]"
+                href="mailto:hello@chinmaykarnik.com"
                 aria-label="Email"
                 style={{ color: "inherit", display: "flex" }}
               >
