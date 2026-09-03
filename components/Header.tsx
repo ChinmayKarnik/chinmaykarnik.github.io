@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
-import { SearchIcon, SoundIcon, SunIcon, RssIcon } from "./icons";
+import { GithubIcon } from "./icons";
 
 const Bar = styled.header`
   background: ${colors.sky};
@@ -58,7 +58,7 @@ const IconGroup = styled.div`
   color: ${colors.text};
 `;
 
-const IconButton = styled.button`
+const IconButton = styled.a`
   background: none;
   border: none;
   padding: 0;
@@ -67,31 +67,31 @@ const IconButton = styled.button`
   display: flex;
 `;
 
-const NAV_ITEMS = ["Lorem", "Ipsum", "Dolor", "Sit"];
+const NAV_ITEMS = [
+  { label: "Projects", href: "#projects" },
+  { label: "Writing", href: "#writing" },
+  { label: "Contact", href: "#contact" },
+];
 
 export default function Header() {
   return (
     <Bar>
-      <Logo href="#">Lorem Ipsum</Logo>
+      <Logo href="#">Chinmay Karnik</Logo>
       <Nav>
         {NAV_ITEMS.map((item) => (
-          <NavLink key={item} href="#">
-            {item}
+          <NavLink key={item.label} href={item.href}>
+            {item.label}
           </NavLink>
         ))}
       </Nav>
       <IconGroup>
-        <IconButton aria-label="Search">
-          <SearchIcon />
-        </IconButton>
-        <IconButton aria-label="Toggle sound">
-          <SoundIcon />
-        </IconButton>
-        <IconButton aria-label="Toggle theme">
-          <SunIcon />
-        </IconButton>
-        <IconButton aria-label="RSS feed">
-          <RssIcon />
+        <IconButton
+          href="https://github.com/ChinmayKarnik"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="GitHub"
+        >
+          <GithubIcon />
         </IconButton>
       </IconGroup>
     </Bar>

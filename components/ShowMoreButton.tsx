@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
-import { ArrowDownIcon } from "./icons";
+import { ArrowRightIcon } from "./icons";
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   padding: 48px 0 80px;
 `;
 
-const Button = styled.button`
+const Button = styled.a`
   display: flex;
   align-items: center;
   gap: 10px;
@@ -21,6 +21,7 @@ const Button = styled.button`
   padding: 14px 28px;
   font-size: 15px;
   font-weight: 700;
+  text-decoration: none;
   cursor: pointer;
 
   &:hover {
@@ -31,9 +32,9 @@ const Button = styled.button`
 export default function ShowMoreButton() {
   return (
     <Wrapper>
-      <Button type="button">
-        <ArrowDownIcon />
-        Show more
+      <Button href="https://github.com/ChinmayKarnik" target="_blank" rel="noreferrer">
+        More projects on GitHub
+        <ArrowRightIcon />
       </Button>
     </Wrapper>
   );

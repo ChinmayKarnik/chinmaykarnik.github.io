@@ -4,34 +4,36 @@ import styled from "styled-components";
 import { colors } from "@/lib/theme";
 import Eyebrow from "./Eyebrow";
 
-type Article = {
-  title: string;
-  subtitle?: string;
+type Project = {
+  name: string;
+  tagline?: string;
   description: string;
+  tech?: string[];
+  githubUrl?: string;
+  featured?: boolean;
+  imagePlaceholder?: string;
 };
 
-const ARTICLES: Article[] = [
+const PROJECTS: Project[] = [
   {
-    title: "Lorem Ipsum Dolor Sit Amet",
+    name: "FitForge",
+    tagline: "Strava for strength training.",
     description:
-      "Consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
+      "A mobile app to log, track, and analyze weight training workouts. Supports live logging, backdated entries, and reusable custom routines, with a calendar view and stats to track progress over time.",
+    tech: ["React Native", "TypeScript"],
+    githubUrl: "https://github.com/ChinmayKarnik/FitForge",
+    featured: true,
+    imagePlaceholder: "FitForge screenshots",
   },
   {
-    title: "Consectetur Adipiscing Elit",
-    subtitle: "Sed do eiusmod tempor incididunt ut labore",
-    description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+    name: "[Project 2 name]",
+    description: "[One or two sentences describing this project.]",
+    featured: false,
   },
   {
-    title: "Ut Labore Et Dolore Magna",
-    description:
-      "Sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-  },
-  {
-    title: "Excepteur Sint Occaecat",
-    subtitle: "Cupidatat non proident sunt in culpa",
-    description:
-      "Totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit.",
+    name: "[Project 3 name]",
+    description: "[One or two sentences describing this project.]",
+    featured: false,
   },
 ];
 
@@ -47,6 +49,21 @@ const Card = styled.article`
   &:first-child {
     padding-top: 0;
   }
+`;
+
+const ImagePlaceholder = styled.div`
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 2px dashed ${colors.footerText};
+  background: ${colors.hillLight};
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${colors.footerText};
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
 `;
 
 const Title = styled.h2`
@@ -71,6 +88,22 @@ const Description = styled.p`
   margin: 0 0 16px;
 `;
 
+const TechRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 16px;
+`;
+
+const TechTag = styled.span`
+  background: ${colors.pillBg};
+  color: ${colors.text};
+  font-size: 13px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+`;
+
 const ReadMore = styled.a`
   font-weight: 700;
   font-size: 16px;
@@ -82,17 +115,40 @@ const ReadMore = styled.a`
   }
 `;
 
+const PlaceholderNote = styled.p`
+  font-size: 14px;
+  font-style: italic;
+  color: ${colors.textMutedLight};
+  margin: 0;
+`;
+
 export default function ArticleList() {
   return (
-    <section>
-      <Eyebrow>Lorem Ipsum Dolor</Eyebrow>
+    <section id="projects">
+      <Eyebrow>Projects</Eyebrow>
       <List>
-        {ARTICLES.map((article) => (
-          <Card key={article.title}>
-            <Title>{article.title}</Title>
-            {article.subtitle && <Subtitle>{article.subtitle}</Subtitle>}
-            <Description>{article.description}</Description>
-            <ReadMore href="#">Read more</ReadMore>
+        {PROJECTS.map((project) => (
+          <Card key={project.name}>
+            {project.imagePlaceholder && (
+              <ImagePlaceholder>{project.imagePlaceholder}</ImagePlaceholder>
+            )}
+            <Title>{project.name}</Title>
+            {project.tagline && <Subtitle>{project.tagline}</Subtitle>}
+            <Description>{project.description}</Description>
+            {project.tech && (
+              <TechRow>
+                {project.tech.map((t) => (
+                  <TechTag key={t}>{t}</TechTag>
+                ))}
+              </TechRow>
+            )}
+            {project.githubUrl ? (
+              <ReadMore href={project.githubUrl} target="_blank" rel="noreferrer">
+                View on GitHub
+              </ReadMore>
+            ) : (
+              <PlaceholderNote>[Add project link]</PlaceholderNote>
+            )}
           </Card>
         ))}
       </List>

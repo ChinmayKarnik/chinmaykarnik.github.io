@@ -3,24 +3,15 @@
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
 import Container from "./Container";
-import { ArrowRightIcon, GithubIcon, LinkedinIcon, MailIcon, RssIcon, SunIcon } from "./icons";
+import { ArrowRightIcon, GithubIcon, LinkedinIcon, MailIcon } from "./icons";
 import { FOOTER_CAP_PATH } from "./hillPaths";
 
 const FOOTER_HILL_VIEWBOX_WIDTH = 5120;
 
-const LINK_COLUMNS = [
-  {
-    heading: "Browse by Category",
-    items: ["Lorem", "Ipsum", "Dolor", "Sit", "Amet", "Consectetur"],
-  },
-  {
-    heading: "Interactive Courses",
-    items: ["Adipiscing Elit", "Sed Do Eiusmod", "Tempor Incididunt"],
-  },
-  {
-    heading: "General",
-    items: ["About Me", "About This Site", "Contact"],
-  },
+const EXPLORE_LINKS = [
+  { label: "Projects", href: "#projects" },
+  { label: "Writing", href: "#writing" },
+  { label: "Competitive Programming", href: "#cp" },
 ];
 
 const FooterWrapper = styled.footer`
@@ -60,13 +51,9 @@ const FooterMain = styled.div`
 
 const TopGrid = styled.div`
   display: grid;
-  grid-template-columns: minmax(240px, 1.3fr) repeat(3, 1fr);
+  grid-template-columns: minmax(240px, 1.3fr) 1fr;
   gap: 40px;
   padding-bottom: 48px;
-
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr 1fr;
-  }
 
   @media (max-width: 560px) {
     grid-template-columns: 1fr;
@@ -93,42 +80,24 @@ const Tagline = styled.p`
   color: ${colors.text};
 `;
 
-const NewsletterLabel = styled.p`
-  margin: 0;
-  color: ${colors.footerText};
-  font-size: 14px;
-  line-height: 22px;
-`;
-
-const NewsletterForm = styled.form`
+const ContactList = styled.div`
   display: flex;
-  max-width: 320px;
+  flex-direction: column;
+  gap: 12px;
 `;
 
-const EmailInput = styled.input`
-  flex: 1;
-  border: 1px solid ${colors.text};
-  border-right: none;
-  border-radius: 6px 0 0 6px;
-  padding: 10px 12px;
-  font-size: 14px;
-  background: ${colors.white};
-  color: ${colors.text};
-
-  &::placeholder {
-    color: ${colors.textMutedLight};
-  }
-`;
-
-const SubmitButton = styled.button`
-  background: ${colors.text};
-  color: ${colors.white};
-  border: none;
-  border-radius: 0 6px 6px 0;
-  padding: 0 14px;
+const ContactLink = styled.a`
   display: flex;
   align-items: center;
-  cursor: pointer;
+  gap: 10px;
+  color: ${colors.text};
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const LinkColumn = styled.div`
@@ -173,18 +142,9 @@ const BottomBar = styled.div`
   border-top: 1px solid ${colors.footerHillLight};
 `;
 
-const LegalRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
+const Copyright = styled.span`
   font-size: 13px;
   color: ${colors.footerText};
-`;
-
-const LegalLink = styled.a`
-  color: ${colors.footerText};
-  text-decoration: underline;
 `;
 
 const SocialRow = styled.div`
@@ -196,7 +156,7 @@ const SocialRow = styled.div`
 
 export default function Footer() {
   return (
-    <FooterWrapper>
+    <FooterWrapper id="contact">
       <HillCapClip>
         <HillCapSvg
           viewBox={`0 0 ${FOOTER_HILL_VIEWBOX_WIDTH} 250`}
@@ -211,50 +171,65 @@ export default function Footer() {
         <Container>
           <TopGrid>
             <BrandColumn>
-              <BrandName>Lorem Ipsum</BrandName>
-              <Tagline>Lorem ipsum dolor sit amet, consectetur.</Tagline>
+              <BrandName>Chinmay Karnik</BrandName>
+              <Tagline>Let&apos;s build something — or just say hi.</Tagline>
 
-              <div>
-                <NewsletterLabel>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Enter your email:
-                </NewsletterLabel>
-                <NewsletterForm>
-                  <EmailInput type="email" placeholder="you@example.com" />
-                  <SubmitButton type="submit" aria-label="Subscribe">
-                    <ArrowRightIcon />
-                  </SubmitButton>
-                </NewsletterForm>
-              </div>
+              <ContactList>
+                <ContactLink href="mailto:[your email]">
+                  <MailIcon size={16} />
+                  [your email]
+                </ContactLink>
+                <ContactLink href="#" target="_blank" rel="noreferrer">
+                  <LinkedinIcon size={16} />
+                  [LinkedIn URL]
+                </ContactLink>
+                <ContactLink href="#" target="_blank" rel="noreferrer">
+                  <ArrowRightIcon size={16} />
+                  Book a call [placeholder]
+                </ContactLink>
+              </ContactList>
             </BrandColumn>
 
-            {LINK_COLUMNS.map((column) => (
-              <LinkColumn key={column.heading}>
-                <ColumnHeading>{column.heading}</ColumnHeading>
-                <ColumnLinks>
-                  {column.items.map((item) => (
-                    <ColumnLink key={item} href="#">
-                      {item}
-                    </ColumnLink>
-                  ))}
-                </ColumnLinks>
-              </LinkColumn>
-            ))}
+            <LinkColumn>
+              <ColumnHeading>Explore</ColumnHeading>
+              <ColumnLinks>
+                {EXPLORE_LINKS.map((item) => (
+                  <ColumnLink key={item.label} href={item.href}>
+                    {item.label}
+                  </ColumnLink>
+                ))}
+              </ColumnLinks>
+            </LinkColumn>
           </TopGrid>
 
           <BottomBar>
-            <LegalRow>
-              <span>&copy; 2024&ndash;present Lorem Ipsum. All Rights Reserved.</span>
-              <LegalLink href="#">Terms of Use</LegalLink>
-              <LegalLink href="#">Privacy Policy</LegalLink>
-              <LegalLink href="#">Code of Conduct</LegalLink>
-            </LegalRow>
+            <Copyright>&copy; 2026 Chinmay Karnik. All Rights Reserved.</Copyright>
             <SocialRow>
-              <SunIcon />
-              <RssIcon />
-              <GithubIcon />
-              <LinkedinIcon />
-              <MailIcon />
+              <a
+                href="https://github.com/ChinmayKarnik"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                style={{ color: "inherit", display: "flex" }}
+              >
+                <GithubIcon />
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                style={{ color: "inherit", display: "flex" }}
+              >
+                <LinkedinIcon />
+              </a>
+              <a
+                href="mailto:[your email]"
+                aria-label="Email"
+                style={{ color: "inherit", display: "flex" }}
+              >
+                <MailIcon />
+              </a>
             </SocialRow>
           </BottomBar>
         </Container>

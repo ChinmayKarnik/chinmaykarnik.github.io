@@ -2,8 +2,6 @@
 
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
-import Rainbow from "./Rainbow";
-import Avatar from "./Avatar";
 import { HERO_CLOUD_PATH, HERO_MIST_PATH, HERO_FOREGROUND_PATH } from "./hillPaths";
 
 // Reference site renders its hills as a 5120x456 SVG, fixed-pixel-width and
@@ -45,30 +43,6 @@ const HillSvg = styled.svg`
   }
 `;
 
-const RainbowStage = styled.div`
-  position: absolute;
-  right: 6%;
-  top: 2%;
-  width: 46%;
-  max-width: 680px;
-  aspect-ratio: 840 / 460;
-
-  @media (max-width: 900px) {
-    display: none;
-  }
-`;
-
-const AvatarStage = styled.div`
-  position: absolute;
-  right: 27%;
-  top: 42%;
-  width: 130px;
-
-  @media (max-width: 900px) {
-    display: none;
-  }
-`;
-
 export default function Hero() {
   return (
     <HeroWrapper>
@@ -78,12 +52,6 @@ export default function Hero() {
           <path d={HERO_MIST_PATH} fill={colors.hillLight} />
         </HillSvg>
       </HillClip>
-      <RainbowStage>
-        <Rainbow />
-      </RainbowStage>
-      <AvatarStage>
-        <Avatar />
-      </AvatarStage>
       <HillClip>
         <HillSvg viewBox={`0 0 ${HILL_VIEWBOX_WIDTH} 456`} preserveAspectRatio="none" aria-hidden>
           <path d={HERO_FOREGROUND_PATH} fill={colors.white} />
