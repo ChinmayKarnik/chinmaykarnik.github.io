@@ -54,6 +54,10 @@ export default function Hero() {
       </HillClip>
       <HillClip>
         <HillSvg viewBox={`0 0 ${HILL_VIEWBOX_WIDTH} 456`} preserveAspectRatio="none" aria-hidden>
+          {/* Safety strip: the foreground path's lowest point falls ~0.5px short
+              of the viewBox edge, letting the sky background bleed through as a
+              hairline seam. This sits underneath the real path and closes it. */}
+          <rect x="0" y="450" width={HILL_VIEWBOX_WIDTH} height="6" fill={colors.white} />
           <path d={HERO_FOREGROUND_PATH} fill={colors.white} />
         </HillSvg>
       </HillClip>

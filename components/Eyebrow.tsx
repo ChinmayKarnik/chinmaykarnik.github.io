@@ -10,7 +10,7 @@ const Eyebrow = styled.p<{ $tone?: "pink" | "footer" }>`
   letter-spacing: 2px;
   text-transform: uppercase;
   color: ${({ $tone }) => ($tone === "footer" ? colors.footerText : colors.eyebrowPink)};
-  margin: 0 0 12px;
+  margin: 0 0 25px;
 `;
 
 export default Eyebrow;
