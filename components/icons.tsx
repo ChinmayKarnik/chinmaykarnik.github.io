@@ -73,22 +73,42 @@ export function ArrowDownIcon({ size = 16 }: IconProps) {
   );
 }
 
-export function GithubIcon({ size = 18 }: IconProps) {
+export function GithubIcon({ size = 20 }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
-      <path d="M12 2a10 10 0 0 0-3.16 19.5c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.15-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.93 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.9-1.3 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.83-2.34 4.67-4.57 4.92.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z" />
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base} strokeWidth={2}>
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+      <path d="M9 18c-4.51 2-5-2-7-2" />
     </svg>
   );
 }
 
-export function LinkedinIcon({ size = 18 }: IconProps) {
+export function LinkedinIcon({ size = 20 }: IconProps) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
-      <rect x="3" y="3" width="18" height="18" rx="2" />
-      <line x1="7.5" y1="10" x2="7.5" y2="17" />
-      <circle cx="7.5" cy="6.8" r="0.9" fill="currentColor" stroke="none" />
-      <path d="M11.5 17v-4.2c0-1.5.9-2.3 2.1-2.3s1.9.8 1.9 2.3V17" />
-      <line x1="11.5" y1="10" x2="11.5" y2="17" />
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base} strokeWidth={2}>
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
+
+export function BlueskyIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 25 22" fill="none">
+      <path
+        d="M12 8.56675C12 8.56675 7.87619 0.22183 2.70999 1.05903C-0.906331 1.64506 2.17634 10.571 3.21796 12.0702C4.25958 13.5694 6.32331 12.5684 6.32331 12.5684C6.32331 12.5684 0.640808 14.0699 5.29012 18.5743C9.73023 22.876 12 16.0718 12 16.0718"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M12.1523 8.62388C12.1523 8.62388 16.2762 0.278959 21.4424 1.11616C25.0587 1.70219 21.976 10.6281 20.9344 12.1273C19.8928 13.6265 17.829 12.6255 17.829 12.6255C17.829 12.6255 23.5115 14.127 18.8622 18.6314C14.4221 22.9331 12.1523 16.129 12.1523 16.129"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
