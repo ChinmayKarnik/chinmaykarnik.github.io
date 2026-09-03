@@ -1,1 +1,0 @@
-# chinmaykarnik.github.io
