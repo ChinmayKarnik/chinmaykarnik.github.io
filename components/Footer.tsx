@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, type RefObject } from "react";
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
 import Container from "./Container";
@@ -19,12 +20,44 @@ import { FOOTER_CAP_PATH, FOOTER_ACCENT_PATH } from "./hillPaths";
 const FOOTER_HILL_VIEWBOX_WIDTH = 5120;
 const FOOTER_ACCENT_VIEWBOX_WIDTH = 1557;
 
+// Toggle to bring the floating avatar back — mechanism is fully preserved,
+// just gated off while it's mid-review.
+const ENABLE_AVATAR_ANIMATION = false;
+
 const CATEGORY_LINKS = ["CSS", "React", "Animation", "JavaScript", "Career", "SVG", "Next.js", "General"];
 const COURSE_LINKS = ["CSS for JS Developers", "The Joy of React", "Whimsical Animations"];
 const GENERAL_LINKS = ["About Josh", "About This Blog", "Contact"];
 
 const FooterWrapper = styled.footer`
   position: relative;
+`;
+
+const AvatarWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  /* TopArea's grid-template-columns is a fixed "384px auto" with a 96px
+     column-gap, so the gap sits at a known, viewport-independent pixel
+     range (384 to 480 from TopArea's left edge) — anchoring here, rather
+     than to the viewport's horizontal center, is what keeps this clear of
+     both the intro column and the nav column's text. */
+  left: 432px;
+  width: 80px;
+  height: 104px;
+  transform: translate(-50%, var(--avatar-offset, -260px));
+  will-change: transform;
+  pointer-events: none;
+  z-index: 0;
+
+  @media (max-width: 640px) {
+    display: none;
+  }
+`;
+
+const AvatarPlaceholder = styled.svg`
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 12px 20px rgba(10, 12, 16, 0.18));
 `;
 
 const HillCapSvg = styled.svg`
@@ -73,6 +106,7 @@ const ContentLayer = styled(Container)`
 `;
 
 const TopArea = styled.div`
+  position: relative;
   display: grid;
   grid-template-columns: 384px auto;
   /* Third row is empty in the left column — it exists only so the nav
@@ -227,10 +261,55 @@ const IconButton = styled.a`
   text-decoration: none;
 `;
 
+// Josh's floating footer avatar isn't a plain function of scroll position: sampling
+// his live site shows the wrapper's `--offset` custom property still creeping toward
+// a resting value across repeated reads at a *frozen* scrollY, which only happens if
+// a continuous rAF loop is easing a "current" value toward a scroll-derived target
+// (a spring/lerp), rather than recalculating the value in a scroll handler. This hook
+// reproduces that mechanism: each frame, compute a target offset from how far the
+// footer has scrolled into view, then nudge the applied offset a fraction of the way
+// there, so it settles in with the same lagging, elastic feel instead of snapping.
+function useAvatarFloat(
+  footerRef: RefObject<HTMLDivElement | null>,
+  avatarRef: RefObject<HTMLDivElement | null>
+) {
+  useEffect(() => {
+    if (!ENABLE_AVATAR_ANIMATION) return;
+
+    const HIDDEN_OFFSET = -260;
+    const SETTLED_OFFSET = 60;
+    const REVEAL_DISTANCE = 340;
+    const DAMPING = 0.08;
+
+    let current = HIDDEN_OFFSET;
+    let rafId: number;
+
+    function tick() {
+      const footerEl = footerRef.current;
+      const avatarEl = avatarRef.current;
+      if (footerEl && avatarEl) {
+        const rect = footerEl.getBoundingClientRect();
+        const progress = Math.min(1, Math.max(0, (window.innerHeight - rect.top) / REVEAL_DISTANCE));
+        const target = HIDDEN_OFFSET + progress * (SETTLED_OFFSET - HIDDEN_OFFSET);
+        current += (target - current) * DAMPING;
+        avatarEl.style.setProperty("--avatar-offset", `${current}px`);
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [footerRef, avatarRef]);
+}
+
 export default function Footer() {
+  const footerMainRef = useRef<HTMLDivElement>(null);
+  const avatarRef = useRef<HTMLDivElement>(null);
+  useAvatarFloat(footerMainRef, avatarRef);
+
   return (
     <FooterWrapper id="contact">
-      <FooterMain>
+      <FooterMain ref={footerMainRef}>
         <HillCapSvg
           viewBox={`0 0 ${FOOTER_HILL_VIEWBOX_WIDTH} 337`}
           preserveAspectRatio="none"
@@ -245,6 +324,23 @@ export default function Footer() {
 
         <ContentLayer>
           <TopArea>
+            {ENABLE_AVATAR_ANIMATION && (
+              <AvatarWrapper ref={avatarRef} aria-hidden>
+                <AvatarPlaceholder viewBox="0 0 200 260">
+                  <rect x="30" y="110" width="140" height="150" rx="40" fill={colors.avatar.sweater} />
+                  <rect x="30" y="110" width="140" height="150" rx="40" fill="url(#avatarShade)" />
+                  <circle cx="100" cy="70" r="46" fill={colors.avatar.skin} />
+                  <path d="M54 68a46 46 0 0 1 92 0v-6a46 46 0 0 0-92 0z" fill={colors.avatar.hair} />
+                  <defs>
+                    <linearGradient id="avatarShade" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0.7" stopColor={colors.avatar.sweater} stopOpacity="0" />
+                      <stop offset="1" stopColor={colors.avatar.sweaterShade} stopOpacity="0.6" />
+                    </linearGradient>
+                  </defs>
+                </AvatarPlaceholder>
+              </AvatarWrapper>
+            )}
+
             <IntroBlock>
               <BrandName>Chinmay Karnik</BrandName>
               <Tagline>Let&apos;s build something — or just say hi.</Tagline>
