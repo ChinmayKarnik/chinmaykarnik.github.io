@@ -9,8 +9,18 @@ import { HERO_CLOUD_PATH, HERO_MIST_PATH, HERO_FOREGROUND_PATH } from "./hillPat
 // stretching a viewBox to 100% width) is what keeps the wave proportions from
 // distorting across breakpoints, so we use the same technique here.
 const HILL_VIEWBOX_WIDTH = 5120;
+const HILL_VIEWBOX_HEIGHT = 456;
 const HILL_HEIGHT_DESKTOP = 340;
 const HILL_HEIGHT_MOBILE = 220;
+
+// Rendering at HILL_HEIGHT_DESKTOP with the viewBox's full 5120 width (like mobile
+// does) would squish the art vertically-only, distorting it from the reference's
+// proportions. Scaling width down by the same ratio as height keeps the art an exact,
+// undistorted miniature of the reference instead — still wide enough (~3818px) to
+// cover any realistic desktop viewport without showing an edge.
+const HILL_WIDTH_DESKTOP = Math.round(
+  (HILL_VIEWBOX_WIDTH * HILL_HEIGHT_DESKTOP) / HILL_VIEWBOX_HEIGHT
+);
 
 // Pure decoration, no content — the intro (name/tagline/photo) lives in
 // IntroSection, rendered after this, in the white space below the clouds.
@@ -37,10 +47,11 @@ const HillSvg = styled.svg`
   bottom: 0;
   transform: translateX(-50%);
   display: block;
-  width: ${HILL_VIEWBOX_WIDTH}px;
+  width: ${HILL_WIDTH_DESKTOP}px;
   height: ${HILL_HEIGHT_DESKTOP}px;
 
   @media (max-width: 900px) {
+    width: ${HILL_VIEWBOX_WIDTH}px;
     height: ${HILL_HEIGHT_MOBILE}px;
   }
 `;
@@ -49,13 +60,21 @@ export default function Hero() {
   return (
     <HeroWrapper>
       <HillClip>
-        <HillSvg viewBox={`0 0 ${HILL_VIEWBOX_WIDTH} 456`} preserveAspectRatio="none" aria-hidden>
+        <HillSvg
+          viewBox={`0 0 ${HILL_VIEWBOX_WIDTH} ${HILL_VIEWBOX_HEIGHT}`}
+          preserveAspectRatio="none"
+          aria-hidden
+        >
           <path d={HERO_CLOUD_PATH} fill={colors.footerHillLight} />
           <path d={HERO_MIST_PATH} fill={colors.hillLight} />
         </HillSvg>
       </HillClip>
       <HillClip>
-        <HillSvg viewBox={`0 0 ${HILL_VIEWBOX_WIDTH} 456`} preserveAspectRatio="none" aria-hidden>
+        <HillSvg
+          viewBox={`0 0 ${HILL_VIEWBOX_WIDTH} ${HILL_VIEWBOX_HEIGHT}`}
+          preserveAspectRatio="none"
+          aria-hidden
+        >
           {/* Safety strip: the foreground path's lowest point falls ~0.5px short
               of the viewBox edge, letting the sky background bleed through as a
               hairline seam. This sits underneath the real path and closes it. */}
