@@ -16,7 +16,7 @@ const POSTS = [
   },
 ];
 
-const PopularList = styled.ul`
+const PopularList = styled.ol`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -25,20 +25,30 @@ const PopularList = styled.ul`
   gap: 16px;
 `;
 
-const PopularItem = styled.li`
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
+// Josh's list item has no layout of its own — the <a> itself is the full-row
+// flex container (icon + text), so the whole row is clickable, not just the text.
+const IconWrap = styled.span`
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-top: 4px;
 `;
 
 const PopularLink = styled.a`
-  font-weight: 700;
-  font-size: 15px;
+  display: flex;
+  gap: 16px;
+  font-weight: 500;
+  font-size: 19px;
   color: ${colors.text};
   text-decoration: none;
+  border-radius: 4px;
 
   &:hover {
-    text-decoration: underline;
+    color: ${colors.brand};
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.brand};
+    outline-offset: 2px;
   }
 `;
 
@@ -57,12 +67,14 @@ export default function Writing() {
       <Eyebrow>Writing</Eyebrow>
       <PopularList>
         {POSTS.map((post) => (
-          <PopularItem key={post.title}>
-            <ArrowRightIcon size={14} />
+          <li key={post.title}>
             <PopularLink href={post.url} target="_blank" rel="noreferrer">
+              <IconWrap>
+                <ArrowRightIcon size={20} strokeWidth={2} />
+              </IconWrap>
               {post.title}
             </PopularLink>
-          </PopularItem>
+          </li>
         ))}
       </PopularList>
       <MoreLink href="https://dev.to/chinmaykarnik" target="_blank" rel="noreferrer">

@@ -4,17 +4,7 @@ import { useEffect, useRef, type RefObject } from "react";
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
 import Container from "./Container";
-import {
-  ArrowRightIcon,
-  BlueskyIcon,
-  GithubIcon,
-  LinkedinIcon,
-  MailIcon,
-  RssIcon,
-  SearchIcon,
-  SoundIcon,
-  SunIcon,
-} from "./icons";
+import { ArrowRightIcon, BlueskyIcon, GithubIcon, LinkedinIcon, MailIcon } from "./icons";
 import { FOOTER_CAP_PATH, FOOTER_ACCENT_PATH } from "./hillPaths";
 
 const FOOTER_HILL_VIEWBOX_WIDTH = 5120;
@@ -23,10 +13,6 @@ const FOOTER_ACCENT_VIEWBOX_WIDTH = 1557;
 // Toggle to bring the floating avatar back — mechanism is fully preserved,
 // just gated off while it's mid-review.
 const ENABLE_AVATAR_ANIMATION = false;
-
-const CATEGORY_LINKS = ["CSS", "React", "Animation", "JavaScript", "Career", "SVG", "Next.js", "General"];
-const COURSE_LINKS = ["CSS for JS Developers", "The Joy of React", "Whimsical Animations"];
-const GENERAL_LINKS = ["About Josh", "About This Blog", "Contact"];
 
 const FooterWrapper = styled.footer`
   position: relative;
@@ -107,37 +93,25 @@ const ContentLayer = styled(Container)`
 
 const TopArea = styled.div`
   position: relative;
-  display: grid;
-  grid-template-columns: 384px auto;
-  /* Third row is empty in the left column — it exists only so the nav
-     column (which spans all rows) is tall enough to bottom-align below
-     the wave's deepest trough, the way Josh's own tall "email" row does
-     for his layout. */
-  grid-template-rows: auto auto 93px;
-  grid-template-areas:
-    "intro links"
-    "contact links"
-    ".      links";
-  column-gap: 96px;
-  row-gap: 32px;
-  align-items: end;
-  padding-bottom: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 32px;
+  padding-bottom: 116px;
 
   @media (max-width: 640px) {
-    display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 32px;
+    padding-bottom: 32px;
   }
 `;
 
 const IntroBlock = styled.div`
-  grid-area: intro;
   display: flex;
   flex-direction: column;
   gap: 20px;
   max-width: 384px;
-  transform: translateY(-8px);
 `;
 
 const BrandName = styled.p`
@@ -155,7 +129,6 @@ const Tagline = styled.p`
 `;
 
 const ContactList = styled.div`
-  grid-area: contact;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -169,56 +142,6 @@ const ContactLink = styled.a`
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-const NavGrid = styled.nav`
-  grid-area: links;
-  display: grid;
-  grid-template-columns: 160px 160px 104px;
-  column-gap: 64px;
-  row-gap: 16px;
-  flex-shrink: 0;
-
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
-    row-gap: 24px;
-  }
-`;
-
-const NavHeading = styled.h2`
-  margin: 0 0 8px;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 21px;
-  letter-spacing: normal;
-  text-transform: uppercase;
-  color: ${colors.footerText};
-`;
-
-const NavList = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-
-const CategoryList = styled(NavList)`
-  display: grid;
-  grid-template-columns: repeat(2, 76px);
-  gap: 8px;
-`;
-
-const NavLink = styled.a`
-  color: ${colors.text};
-  text-decoration: none;
-  font-size: 14px;
-  line-height: 21px;
 
   &:hover {
     text-decoration: underline;
@@ -368,58 +291,11 @@ export default function Footer() {
                 Book a call
               </ContactLink>
             </ContactList>
-
-            <NavGrid>
-              <div>
-                <NavHeading>Browse By Category</NavHeading>
-                <CategoryList>
-                  {CATEGORY_LINKS.map((label) => (
-                    <li key={label}>
-                      <NavLink href="#">{label}</NavLink>
-                    </li>
-                  ))}
-                </CategoryList>
-              </div>
-
-              <div>
-                <NavHeading>Interactive Courses</NavHeading>
-                <NavList>
-                  {COURSE_LINKS.map((label) => (
-                    <li key={label}>
-                      <NavLink href="#">{label}</NavLink>
-                    </li>
-                  ))}
-                </NavList>
-              </div>
-
-              <div>
-                <NavHeading>General</NavHeading>
-                <NavList>
-                  {GENERAL_LINKS.map((label) => (
-                    <li key={label}>
-                      <NavLink href="#">{label}</NavLink>
-                    </li>
-                  ))}
-                </NavList>
-              </div>
-            </NavGrid>
           </TopArea>
 
           <BottomBar>
             <Copyright>&copy; 2026 Chinmay Karnik. All Rights Reserved.</Copyright>
             <SocialRow>
-              <IconButton as="button" type="button" aria-label="Search">
-                <SearchIcon />
-              </IconButton>
-              <IconButton as="button" type="button" aria-label="Disable sounds">
-                <SoundIcon />
-              </IconButton>
-              <IconButton as="button" type="button" aria-label="Activate dark mode">
-                <SunIcon />
-              </IconButton>
-              <IconButton href="#" aria-label="RSS Feed">
-                <RssIcon />
-              </IconButton>
               <IconButton href="#" target="_blank" rel="noreferrer" aria-label="Bluesky">
                 <BlueskyIcon />
               </IconButton>

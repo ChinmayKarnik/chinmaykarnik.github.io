@@ -9,9 +9,11 @@ import { HERO_CLOUD_PATH, HERO_MIST_PATH, HERO_FOREGROUND_PATH } from "./hillPat
 // stretching a viewBox to 100% width) is what keeps the wave proportions from
 // distorting across breakpoints, so we use the same technique here.
 const HILL_VIEWBOX_WIDTH = 5120;
-const HILL_HEIGHT_DESKTOP = 456;
+const HILL_HEIGHT_DESKTOP = 340;
 const HILL_HEIGHT_MOBILE = 220;
 
+// Pure decoration, no content — the intro (name/tagline/photo) lives in
+// IntroSection, rendered after this, in the white space below the clouds.
 const HeroWrapper = styled.div`
   position: relative;
   background: ${colors.sky};

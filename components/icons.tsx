@@ -55,9 +55,12 @@ export function RssIcon({ size = 20 }: IconProps) {
   );
 }
 
-export function ArrowRightIcon({ size = 16 }: IconProps) {
+export function ArrowRightIcon({
+  size = 16,
+  strokeWidth = base.strokeWidth,
+}: IconProps & { strokeWidth?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base} strokeWidth={strokeWidth}>
       <line x1="4" y1="12" x2="20" y2="12" />
       <polyline points="13 5 20 12 13 19" />
     </svg>
@@ -118,6 +121,16 @@ export function MailIcon({ size = 18 }: IconProps) {
     <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
       <rect x="3" y="5" width="18" height="14" rx="2" />
       <polyline points="3 7 12 13 21 7" />
+    </svg>
+  );
+}
+
+export function DownloadIcon({ size = 20 }: IconProps) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" {...base}>
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" y1="15" x2="12" y2="3" />
     </svg>
   );
 }

@@ -13,13 +13,6 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    name: "FitForge",
-    tagline: "Strava for strength training.",
-    description:
-      "A mobile app to log, track, and analyze weight training workouts. Supports live logging, backdated entries, and reusable custom routines, with a calendar view and stats to track progress over time.",
-    url: "https://github.com/ChinmayKarnik/FitForge",
-  },
-  {
     name: "ChessTourney",
     tagline: "Fair chess tournaments for players with different skill levels.",
     description:
@@ -84,8 +77,8 @@ const ShowMoreLink = styled.a`
 
 export default function ArticleList() {
   return (
-    <section id="projects">
-      <Eyebrow>Projects</Eyebrow>
+    <section id="other-projects">
+      <Eyebrow>Other Projects</Eyebrow>
       <List>
         {PROJECTS.map((project) => (
           <Card key={project.name}>

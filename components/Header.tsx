@@ -3,7 +3,7 @@
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
 import Container from "./Container";
-import { RssIcon, SearchIcon, SoundIcon, SunIcon } from "./icons";
+import { DownloadIcon, GithubIcon, LinkedinIcon } from "./icons";
 
 const Bar = styled.header`
   background: ${colors.sky};
@@ -81,6 +81,7 @@ const IconButton = styled.a`
 
 const NAV_ITEMS = [
   { label: "Projects", href: "#projects" },
+  { label: "Competitive Programming", href: "#competitive-programming" },
   { label: "Writing", href: "#writing" },
   { label: "Contact", href: "#contact" },
 ];
@@ -98,17 +99,25 @@ export default function Header() {
           ))}
         </Nav>
         <IconGroup>
-          <IconButton as="button" type="button" aria-label="Search">
-            <SearchIcon />
+          <IconButton
+            href="https://github.com/ChinmayKarnik"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+          >
+            <GithubIcon />
           </IconButton>
-          <IconButton as="button" type="button" aria-label="Disable sounds">
-            <SoundIcon />
+          {/* placeholder — no résumé file wired up yet */}
+          <IconButton href="#" aria-label="Résumé">
+            <DownloadIcon />
           </IconButton>
-          <IconButton as="button" type="button" aria-label="Activate dark mode">
-            <SunIcon />
-          </IconButton>
-          <IconButton href="#" aria-label="RSS Feed">
-            <RssIcon />
+          <IconButton
+            href="https://www.linkedin.com/in/chinmay-karnik-25a08615b"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
+            <LinkedinIcon />
           </IconButton>
         </IconGroup>
       </BarInner>
