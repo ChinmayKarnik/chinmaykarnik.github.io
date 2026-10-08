@@ -3,40 +3,44 @@
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
 import Eyebrow from "./Eyebrow";
+import { ArrowRightIcon } from "./icons";
 
 type Row = {
   platform: string;
   accent: string;
+  tint: string;
   display: string;
-  meta: string;
-  lead: string;
-  rest: string;
+  rank: string;
+  url?: string;
+  note: string;
 };
 
 const ROWS: Row[] = [
   {
     platform: "Codeforces",
     accent: colors.rainbow[1],
+    tint: "rgba(30, 41, 169, 0.1)",
     display: "2326",
-    meta: "International Master · codeforces.com/profile/ChinmayKarnik",
-    lead: "This is the one I actually check obsessively.",
-    rest: "Most evenings still end with a Div. 2 or Div. 3 round open in a tab I tell myself I'll just skim, and most of the time I end up solving the first three problems before I remember I had other plans. 2326 took a long stretch of plateaus to reach, including a few genuinely humbling rounds where I lost more rating in twenty minutes than I'd gained in the previous month. Grandmaster is next, and I'm not rushing it.",
+    rank: "International Master",
+    url: "https://codeforces.com/profile/ChinmayKarnik",
+    note: "The one I actually check obsessively, usually with a Div. 2 or Div. 3 round open in a tab I tell myself I'll just skim. 2326 took a long stretch of plateaus to reach, and Grandmaster is next.",
   },
   {
     platform: "CodeChef",
     accent: colors.rainbow[2],
+    tint: "rgba(111, 41, 210, 0.1)",
     display: "2175",
-    meta: "5★, Division 1 · codechef.com/users/chinmaykarnik",
-    lead: "2175 is both where I am right now and the highest I've ever been.",
-    rest: "Unlike Codeforces, CodeChef's long format gives you days instead of minutes, and that changes the skill entirely: less about typing fast under pressure, more about sitting with a hard idea until it gives something up. Division 1 feels less like a ceiling and more like the point where the next jump needs a different approach.",
+    rank: "5★, Division 1",
+    url: "https://www.codechef.com/users/chinmaykarnik",
+    note: "2175 is both where I am right now and the highest I've ever been. CodeChef's long format trades speed for patience, days instead of minutes with a hard idea.",
   },
   {
     platform: "ACM ICPC",
     accent: colors.rainbow[4],
+    tint: "rgba(248, 47, 117, 0.1)",
     display: "2021",
-    meta: "Regional Finalist",
-    lead: "No continuous rating here, just one shot at a whiteboard with two teammates and a shared keyboard.",
-    rest: "Regionals was the first time competitive programming felt like a team sport instead of a solo grind, and arguing over approach on problems we'd already half-solved individually taught me more about communicating an idea than years of solo contests ever did.",
+    rank: "Regional Finalist",
+    note: "No continuous rating here, just one shot at a whiteboard with two teammates and a shared keyboard. Regionals was the first time this felt like a team sport instead of a solo grind.",
   },
 ];
 
@@ -44,7 +48,7 @@ const SectionIntro = styled.p`
   font-size: 16px;
   line-height: 24px;
   color: ${colors.text};
-  max-width: 640px;
+  max-width: 600px;
   margin: 0 0 36px;
 `;
 
@@ -59,10 +63,6 @@ const RowItem = styled.div`
   gap: 32px;
   padding: 32px 0;
   border-top: 1px solid ${colors.hillLight};
-
-  &:last-child {
-    border-bottom: 1px solid ${colors.hillLight};
-  }
 
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
@@ -100,26 +100,45 @@ const RowPlatform = styled.div`
 const RowBody = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 `;
 
-const RowMeta = styled.div`
+const MetaRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+`;
+
+const RankBadge = styled.span<{ $accent: string; $tint: string }>`
+  font-size: 12.5px;
+  font-weight: 700;
+  color: ${(p) => p.$accent};
+  background: ${(p) => p.$tint};
+  padding: 4px 10px;
+  border-radius: 1000px;
+`;
+
+const ProfileLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   color: ${colors.textMutedLight};
+  text-decoration: none;
+
+  &:hover {
+    color: ${colors.text};
+  }
 `;
 
 const RowNote = styled.p`
   font-size: 15.5px;
   line-height: 24px;
-  color: ${colors.textMuted};
+  color: ${colors.text};
   margin: 0;
   max-width: 640px;
-`;
-
-const Lead = styled.span`
-  font-weight: 700;
-  color: ${colors.text};
 `;
 
 export default function CompetitiveProgrammingD() {
@@ -127,9 +146,10 @@ export default function CompetitiveProgrammingD() {
     <section id="competitive-programming">
       <Eyebrow>Competitive Programming</Eyebrow>
       <SectionIntro>
-        Started grinding problems back at VNIT and never really stopped. Ratings are a vanity
-        metric, sure, but they&apos;re also the most honest scoreboard I&apos;ve got, and I like
-        having a record of progress that isn&apos;t just a gut feeling.
+        Started grinding problems back at VNIT and never really stopped. What began as placement
+        prep turned into a genuine habit, then something closer to three different habits: fast
+        and reflexive, slow and stubborn, and done as a team under pressure. Ratings are a vanity
+        metric, but they&apos;re the most honest scoreboard I&apos;ve got.
       </SectionIntro>
       <Table>
         {ROWS.map((row) => (
@@ -139,10 +159,18 @@ export default function CompetitiveProgrammingD() {
               <RowPlatform>{row.platform}</RowPlatform>
             </RowNumberCol>
             <RowBody>
-              <RowMeta>{row.meta}</RowMeta>
-              <RowNote>
-                <Lead>{row.lead}</Lead> {row.rest}
-              </RowNote>
+              <MetaRow>
+                <RankBadge $accent={row.accent} $tint={row.tint}>
+                  {row.rank}
+                </RankBadge>
+                {row.url && (
+                  <ProfileLink href={row.url} target="_blank" rel="noreferrer">
+                    View profile
+                    <ArrowRightIcon size={13} strokeWidth={2} />
+                  </ProfileLink>
+                )}
+              </MetaRow>
+              <RowNote>{row.note}</RowNote>
             </RowBody>
           </RowItem>
         ))}
