@@ -14,6 +14,10 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
+  html {
+    background: ${colors.sky};
+  }
+
   body {
     font-family: var(--font-body), sans-serif;
     color: ${colors.text};

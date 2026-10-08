@@ -1,15 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { colors } from "@/lib/theme";
 import Container from "./Container";
 
 const IntroInner = styled(Container)`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 48px;
+  justify-content: center;
+  gap: 56px;
   padding-top: 64px;
   padding-bottom: 64px;
 
@@ -60,14 +60,14 @@ const Tagline = styled.p`
   font-size: 22px;
   font-weight: 600;
   line-height: 33px;
-  color: ${colors.text};
+  color: ${colors.brand};
   margin: 0;
 `;
 
 const Bio = styled.p`
   font-size: 16px;
   line-height: 24px;
-  color: ${colors.text};
+  color: ${colors.textMuted};
   margin: 0;
 `;
 
@@ -82,39 +82,67 @@ const CtaRow = styled.div`
   }
 `;
 
-const PrimaryCta = styled.a`
-  background: ${colors.showMoreBg};
-  color: ${colors.white};
+const ctaBase = css`
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
   font-weight: 700;
   font-size: 15px;
-  padding: 12px 22px;
+  padding: 12px 24px;
   border-radius: 8px;
+  border: 2px solid transparent;
   text-decoration: none;
+  transition: all 0.2s ease;
+`;
+
+const PrimaryCta = styled.a`
+  ${ctaBase}
+  background: ${colors.showMoreBg};
+  border-color: ${colors.showMoreBg};
+  color: ${colors.white};
 
   &:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.15);
   }
 `;
 
 const SecondaryCta = styled.a`
-  color: ${colors.text};
-  font-weight: 700;
-  font-size: 15px;
-  padding: 12px 22px;
-  text-decoration: underline;
+  ${ctaBase}
+  background: transparent;
+  border-color: ${colors.showMoreBg};
+  color: ${colors.showMoreBg};
+
+  &:hover {
+    background: ${colors.showMoreBg};
+    color: ${colors.white};
+  }
+`;
+
+const PhotoWrap = styled.div`
+  position: relative;
+  flex-shrink: 0;
+`;
+
+const PhotoBackdrop = styled.div`
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  background: ${colors.pillBg};
 `;
 
 const PhotoFrame = styled.div`
-  flex-shrink: 0;
-  width: 200px;
-  height: 200px;
+  position: relative;
+  width: 220px;
+  height: 220px;
   border-radius: 50%;
   overflow: hidden;
   background: ${colors.hillLight};
+  border: 4px solid ${colors.white};
+  box-shadow: 0 16px 32px rgba(10, 12, 16, 0.14);
 
   @media (max-width: 640px) {
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
   }
 `;
 
@@ -141,15 +169,18 @@ export default function IntroSection() {
           <SecondaryCta href="#contact">Get in touch</SecondaryCta>
         </CtaRow>
       </TextCol>
-      <PhotoFrame>
-        <PhotoImg
-          src="/profile-photo.jpg"
-          alt="Chinmay Karnik"
-          width={200}
-          height={200}
-          priority
-        />
-      </PhotoFrame>
+      <PhotoWrap>
+        <PhotoBackdrop />
+        <PhotoFrame>
+          <PhotoImg
+            src="/profile-photo.jpg"
+            alt="Chinmay Karnik"
+            width={220}
+            height={220}
+            priority
+          />
+        </PhotoFrame>
+      </PhotoWrap>
     </IntroInner>
   );
 }
