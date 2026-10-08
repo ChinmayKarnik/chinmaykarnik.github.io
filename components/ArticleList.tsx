@@ -3,12 +3,19 @@
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
 import Eyebrow from "./Eyebrow";
+import { GithubIcon } from "./icons";
+
+type Screenshot = {
+  src: string;
+  alt: string;
+};
 
 type Project = {
   name: string;
   tagline?: string;
   description: string;
   url?: string;
+  screenshots?: Screenshot[];
 };
 
 const PROJECTS: Project[] = [
@@ -16,14 +23,19 @@ const PROJECTS: Project[] = [
     name: "ChessTourney",
     tagline: "Fair chess tournaments for players with different skill levels.",
     description:
-      "A mobile app for running casual chess tournaments with live standings and match history, built around piece-odds handicaps so players of different skill levels can compete fairly. Verifies players and pulls results live via the Lichess API — no backend required.",
+      "A mobile app for running casual chess tournaments with live standings and match history, built around piece-odds handicaps so players of different skill levels can compete fairly. Verifies players and pulls results live via the Lichess API, no backend required.",
     url: "https://github.com/ChinmayKarnik/ChessTourney",
+    screenshots: [
+      { src: "/projects/chesstourney/tournaments-list.png", alt: "ChessTourney tournaments list screen" },
+      { src: "/projects/chesstourney/ongoing-tournament.png", alt: "ChessTourney live tournament standings screen" },
+      { src: "/projects/chesstourney/player-matches.png", alt: "ChessTourney player match history screen" },
+    ],
   },
   {
     name: "Tooltip",
     tagline: "Published as rn-lightweight-tooltip on npm.",
     description:
-      "A lightweight, non-modal tooltip component for React Native — customizable and performant, and drops into any screen without blocking interaction.",
+      "A lightweight, non-modal tooltip component for React Native. Customizable and performant, and drops into any screen without blocking interaction.",
     url: "https://github.com/ChinmayKarnik/Tooltip",
   },
 ];
@@ -31,16 +43,43 @@ const PROJECTS: Project[] = [
 const List = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 28px;
 `;
 
-const Card = styled.article`
-  padding: 40px 0;
-  border-bottom: 1px solid ${colors.hillLight};
+const Card = styled.article<{ $compact?: boolean }>`
+  background: ${colors.white};
+  border: 1px solid ${colors.hillLight};
+  border-radius: 20px;
+  padding: 36px 40px;
+  box-shadow: 0 16px 32px rgba(10, 12, 16, 0.07);
+  max-width: ${({ $compact }) => ($compact ? "600px" : "100%")};
 
-  &:first-child {
-    padding-top: 0;
+  @media (max-width: 640px) {
+    padding: 28px 24px;
+    max-width: 100%;
   }
 `;
+
+const CardHeader = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+`;
+
+const IconBadge = styled.div`
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(66, 66, 250, 0.1);
+  color: ${colors.brand};
+`;
+
+const TitleGroup = styled.div``;
 
 const Title = styled.h2`
   font-size: 22px;
@@ -54,14 +93,32 @@ const Subtitle = styled.p`
   font-size: 15px;
   font-weight: 600;
   color: ${colors.textMuted};
-  margin: 0 0 12px;
+  margin: 0;
 `;
 
 const Description = styled.p`
   font-size: 16px;
   line-height: 24px;
   color: ${colors.text};
+  max-width: 640px;
   margin: 0 0 16px;
+`;
+
+const ScreenshotRow = styled.div`
+  display: flex;
+  gap: 24px;
+  margin: 20px 0 24px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+`;
+
+const Screenshot = styled.img`
+  display: block;
+  flex-shrink: 0;
+  width: 220px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 16px 32px rgba(10, 12, 16, 0.2);
 `;
 
 const ShowMoreLink = styled.a`
@@ -81,9 +138,28 @@ export default function ArticleList() {
       <Eyebrow>Other Projects</Eyebrow>
       <List>
         {PROJECTS.map((project) => (
-          <Card key={project.name}>
-            <Title>{project.name}</Title>
-            {project.tagline && <Subtitle>{project.tagline}</Subtitle>}
+          <Card key={project.name} $compact={!project.screenshots}>
+            {project.screenshots ? (
+              <>
+                <Title>{project.name}</Title>
+                {project.tagline && <Subtitle>{project.tagline}</Subtitle>}
+                <ScreenshotRow>
+                  {project.screenshots.map((shot) => (
+                    <Screenshot key={shot.src} src={shot.src} alt={shot.alt} />
+                  ))}
+                </ScreenshotRow>
+              </>
+            ) : (
+              <CardHeader>
+                <IconBadge>
+                  <GithubIcon size={20} />
+                </IconBadge>
+                <TitleGroup>
+                  <Title>{project.name}</Title>
+                  {project.tagline && <Subtitle>{project.tagline}</Subtitle>}
+                </TitleGroup>
+              </CardHeader>
+            )}
             <Description>{project.description}</Description>
             {project.url && (
               <ShowMoreLink href={project.url} target="_blank" rel="noreferrer">
