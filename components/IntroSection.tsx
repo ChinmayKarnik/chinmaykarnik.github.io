@@ -10,7 +10,7 @@ const IntroInner = styled(Container)`
   align-items: center;
   justify-content: center;
   gap: 56px;
-  padding-top: 64px;
+  padding-top: 8px;
   padding-bottom: 64px;
 
   @media (max-width: 900px) {
@@ -118,23 +118,11 @@ const SecondaryCta = styled.a`
   }
 `;
 
-const PhotoWrap = styled.div`
-  position: relative;
-  flex-shrink: 0;
-`;
-
-const PhotoBackdrop = styled.div`
-  position: absolute;
-  inset: -14px;
-  border-radius: 50%;
-  background: ${colors.pillBg};
-`;
-
 const PhotoFrame = styled.div`
-  position: relative;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
+  flex-shrink: 0;
+  width: 300px;
+  height: 300px;
+  border-radius: 49px;
   overflow: hidden;
   background: ${colors.hillLight};
   border: 4px solid ${colors.white};
@@ -143,6 +131,7 @@ const PhotoFrame = styled.div`
   @media (max-width: 640px) {
     width: 150px;
     height: 150px;
+    border-radius: 24px;
   }
 `;
 
@@ -160,27 +149,28 @@ export default function IntroSection() {
         <Name>Chinmay Karnik</Name>
         <Tagline>Software Engineer &amp; Competitive Programmer</Tagline>
         <Bio>
-          Full-stack, AI-native software engineer. Shipped at Zepto and
-          Gameskraft. Codeforces International Master (2326). Building
-          FitForge.
+          I&apos;m a full-stack, AI-native software engineer. I&apos;ve
+          previously worked at Zepto, in e-commerce, and Gameskraft, in real
+          money gaming. I&apos;m also an avid competitive programmer: an
+          International Master on Codeforces (2326), 6-Star on CodeChef
+          (2318), and a Regional Finalist at ACM ICPC 2021. Right now,
+          I&apos;m building FitForge, a mobile app to log, track, and analyze
+          strength training workouts, think Strava for the gym.
         </Bio>
         <CtaRow>
           <PrimaryCta href="#projects">View Projects</PrimaryCta>
           <SecondaryCta href="#contact">Get in touch</SecondaryCta>
         </CtaRow>
       </TextCol>
-      <PhotoWrap>
-        <PhotoBackdrop />
-        <PhotoFrame>
-          <PhotoImg
-            src="/profile-photo.jpg"
-            alt="Chinmay Karnik"
-            width={220}
-            height={220}
-            priority
-          />
-        </PhotoFrame>
-      </PhotoWrap>
+      <PhotoFrame>
+        <PhotoImg
+          src="/profile-photo.jpg"
+          alt="Chinmay Karnik"
+          width={300}
+          height={300}
+          priority
+        />
+      </PhotoFrame>
     </IntroInner>
   );
 }
