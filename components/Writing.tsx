@@ -50,7 +50,7 @@ const PostCard = styled.a`
   gap: 10px;
   background: ${colors.white};
   border: 1px solid ${colors.hillLight};
-  border-left: 4px solid ${colors.brand};
+  border-left: 4px solid ${colors.sky};
   border-radius: 16px;
   padding: 24px 28px;
   color: inherit;
@@ -112,8 +112,8 @@ const MetaText = styled.span`
 const TagPill = styled.span`
   font-size: 12px;
   font-weight: 600;
-  color: ${colors.brand};
-  background: rgba(66, 66, 250, 0.08);
+  color: ${colors.footerText};
+  background: ${colors.hillLight};
   padding: 3px 10px;
   border-radius: 1000px;
 `;
