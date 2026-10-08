@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Container from "./Container";
 import FeaturedProject from "./FeaturedProject";
 import ArticleList from "./ArticleList";
-import CompetitiveProgramming from "./CompetitiveProgramming";
+import CompetitiveProgramming from "./CompetitiveProgrammingD";
 import Writing from "./Writing";
 import ContactMe from "./ContactMe";
 
