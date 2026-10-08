@@ -4,8 +4,9 @@ import { useEffect, useRef, type RefObject } from "react";
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
 import Container from "./Container";
-import { ArrowRightIcon, BlueskyIcon, GithubIcon, LinkedinIcon, MailIcon } from "./icons";
+import { ArrowRightIcon, GithubIcon, LinkedinIcon, MailIcon } from "./icons";
 import { FOOTER_CAP_PATH, FOOTER_ACCENT_PATH } from "./hillPaths";
+import Eyebrow from "./Eyebrow";
 
 const FOOTER_HILL_VIEWBOX_WIDTH = 5120;
 const FOOTER_ACCENT_VIEWBOX_WIDTH = 1557;
@@ -58,6 +59,19 @@ const HillCapSvg = styled.svg`
   @media (max-width: 640px) {
     height: 132px;
   }
+`;
+
+// The cap path's flat top edge is sub-pixel thin, so its anti-aliased
+// coverage blends with whatever sits behind it. Without this, that blend
+// is against FooterMain's solid footerSky background and shows up as a
+// faint 1px blue-tinted seam right at the Writing/Footer boundary.
+const SeamMask = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: ${colors.white};
 `;
 
 const FooterMain = styled.div`
@@ -128,7 +142,9 @@ const Tagline = styled.p`
   color: ${colors.text};
 `;
 
-const ContactList = styled.div`
+const ContactList = styled.div``;
+
+const ContactLinks = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -233,6 +249,7 @@ export default function Footer() {
   return (
     <FooterWrapper id="contact">
       <FooterMain ref={footerMainRef}>
+        <SeamMask />
         <HillCapSvg
           viewBox={`0 0 ${FOOTER_HILL_VIEWBOX_WIDTH} 337`}
           preserveAspectRatio="none"
@@ -266,39 +283,39 @@ export default function Footer() {
 
             <IntroBlock>
               <BrandName>Chinmay Karnik</BrandName>
-              <Tagline>Let&apos;s build something — or just say hi.</Tagline>
+              <Tagline>Let&apos;s build something, or just say hi.</Tagline>
             </IntroBlock>
 
             <ContactList>
-              <ContactLink href="mailto:hello@chinmaykarnik.com">
-                <MailIcon size={16} />
-                hello@chinmaykarnik.com
-              </ContactLink>
-              <ContactLink
-                href="https://www.linkedin.com/in/chinmay-karnik-25a08615b"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <LinkedinIcon size={16} />
-                LinkedIn
-              </ContactLink>
-              <ContactLink
-                href="https://cal.com/chinmay-karnik-6ygfgj/30min"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <ArrowRightIcon size={16} />
-                Book a call
-              </ContactLink>
+              <Eyebrow $tone="footer">Get in Touch</Eyebrow>
+              <ContactLinks>
+                <ContactLink href="mailto:hello@chinmaykarnik.com">
+                  <MailIcon size={16} />
+                  hello@chinmaykarnik.com
+                </ContactLink>
+                <ContactLink
+                  href="https://www.linkedin.com/in/chinmay-karnik-25a08615b"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <LinkedinIcon size={16} />
+                  LinkedIn
+                </ContactLink>
+                <ContactLink
+                  href="https://cal.com/chinmay-karnik-6ygfgj/30min"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <ArrowRightIcon size={16} />
+                  Book a call
+                </ContactLink>
+              </ContactLinks>
             </ContactList>
           </TopArea>
 
           <BottomBar>
             <Copyright>&copy; 2026 Chinmay Karnik. All Rights Reserved.</Copyright>
             <SocialRow>
-              <IconButton href="#" target="_blank" rel="noreferrer" aria-label="Bluesky">
-                <BlueskyIcon />
-              </IconButton>
               <IconButton
                 href="https://github.com/ChinmayKarnik"
                 target="_blank"

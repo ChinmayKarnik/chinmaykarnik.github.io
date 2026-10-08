@@ -10,6 +10,11 @@ import Writing from "./Writing";
 const ContentContainer = styled(Container)`
   position: relative;
   z-index: 1;
+  padding-bottom: 96px;
+
+  @media (max-width: 640px) {
+    padding-bottom: 56px;
+  }
 `;
 
 const Stack = styled.div`
