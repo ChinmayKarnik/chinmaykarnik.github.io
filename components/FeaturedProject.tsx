@@ -3,28 +3,39 @@
 import styled, { css } from "styled-components";
 import { colors } from "@/lib/theme";
 import Eyebrow from "./Eyebrow";
-import { GithubIcon } from "./icons";
+import {
+  GithubIcon,
+  GooglePlayIcon,
+  ZapIcon,
+  SlidersIcon,
+  TrendingUpIcon,
+  ShieldIcon,
+} from "./icons";
 
 const SCREENSHOTS = [
+  { src: "/projects/fitforge/activity.png", alt: "FitForge activity screen" },
   { src: "/projects/fitforge/live-workout.png", alt: "FitForge active workout screen" },
-  { src: "/projects/fitforge/statistics.png", alt: "FitForge statistics screen" },
   { src: "/projects/fitforge/calendar.png", alt: "FitForge calendar screen" },
 ];
 
 const HIGHLIGHTS = [
   {
+    icon: ZapIcon,
     lead: "Log fast.",
     rest: "Live workout tracking built for the gym, not a spreadsheet after the fact.",
   },
   {
+    icon: SlidersIcon,
     lead: "Train your way.",
     rest: "Custom routines and freeform logging for lifts that don't fit a template.",
   },
   {
+    icon: TrendingUpIcon,
     lead: "See the progress.",
     rest: "Full history and analytics that show whether you're actually getting stronger.",
   },
   {
+    icon: ShieldIcon,
     lead: "Own your data.",
     rest: "Offline-first, no ads, no paywalls.",
   },
@@ -84,37 +95,52 @@ const Description = styled.p`
 const FeatureGrid = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 32px 40px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
   max-width: 720px;
   margin: 0 auto;
 `;
 
 const FeatureItem = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 16px;
   text-align: left;
+  background: ${colors.white};
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 24px rgba(10, 12, 16, 0.08);
 `;
 
-const FeatureDot = styled.span`
-  width: 10px;
-  height: 10px;
+const FeatureIconBadge = styled.div`
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: ${colors.brand};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(66, 66, 250, 0.12);
+  color: ${colors.brand};
+`;
+
+const FeatureTextCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 `;
 
 const FeatureLead = styled.h3`
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
-  line-height: 24px;
+  line-height: 22px;
   color: ${colors.text};
   margin: 0;
 `;
 
 const FeatureText = styled.p`
-  font-size: 15px;
-  line-height: 22px;
+  font-size: 14px;
+  line-height: 21px;
   color: ${colors.textMuted};
   margin: 0;
 `;
@@ -175,35 +201,20 @@ const ScreenshotRow = styled.div`
   }
 `;
 
-const PhoneBezel = styled.div`
-  position: relative;
+const ScreenshotItem = styled.div`
   flex-shrink: 0;
-  background: ${colors.showMoreBg};
-  border-radius: 42px;
-  padding: 34px 14px 14px;
-  box-shadow: 0 20px 40px rgba(10, 12, 16, 0.22);
 
   &:nth-child(2) {
-    transform: translateY(-24px);
+    transform: translateY(-20px);
   }
-`;
-
-const Notch = styled.div`
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 70px;
-  height: 18px;
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.85);
 `;
 
 const ScreenshotFrame = styled.img`
   display: block;
   width: 220px;
   height: auto;
-  border-radius: 22px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(10, 12, 16, 0.22);
 `;
 
 export default function FeaturedProject() {
@@ -216,10 +227,9 @@ export default function FeaturedProject() {
       </HeaderGroup>
       <ScreenshotRow>
         {SCREENSHOTS.map((shot) => (
-          <PhoneBezel key={shot.src}>
-            <Notch />
+          <ScreenshotItem key={shot.src}>
             <ScreenshotFrame src={shot.src} alt={shot.alt} />
-          </PhoneBezel>
+          </ScreenshotItem>
         ))}
       </ScreenshotRow>
       <Description>
@@ -230,15 +240,20 @@ export default function FeaturedProject() {
       <FeatureGrid>
         {HIGHLIGHTS.map((item) => (
           <FeatureItem key={item.lead}>
-            <FeatureDot />
-            <FeatureLead>{item.lead}</FeatureLead>
-            <FeatureText>{item.rest}</FeatureText>
+            <FeatureIconBadge>
+              <item.icon size={22} />
+            </FeatureIconBadge>
+            <FeatureTextCol>
+              <FeatureLead>{item.lead}</FeatureLead>
+              <FeatureText>{item.rest}</FeatureText>
+            </FeatureTextCol>
           </FeatureItem>
         ))}
       </FeatureGrid>
       <ButtonRow>
         {/* TODO: swap in the real Play Store listing URL */}
         <PrimaryButton href="#" target="_blank" rel="noreferrer">
+          <GooglePlayIcon size={18} />
           Get it on Google Play
         </PrimaryButton>
         <SecondaryButton href="https://github.com/ChinmayKarnik/FitForge" target="_blank" rel="noreferrer">
