@@ -58,12 +58,12 @@ const PostCard = styled.a`
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
 
   &:hover {
-    border-color: ${colors.brand};
+    border-color: ${colors.footerText};
     box-shadow: 0 16px 32px rgba(10, 12, 16, 0.08);
   }
 
   &:focus-visible {
-    outline: 2px solid ${colors.brand};
+    outline: 2px solid ${colors.footerText};
     outline-offset: 2px;
   }
 

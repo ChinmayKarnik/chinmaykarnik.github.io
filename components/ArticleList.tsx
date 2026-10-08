@@ -119,7 +119,7 @@ const MiniEntry = styled.a`
   gap: 14px;
   background: ${colors.white};
   border: 1px solid ${colors.hillLight};
-  border-left: 4px solid ${colors.brand};
+  border-left: 4px solid ${colors.sky};
   border-radius: 16px;
   padding: 28px 32px;
   color: inherit;
@@ -127,7 +127,7 @@ const MiniEntry = styled.a`
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
 
   &:hover {
-    border-color: ${colors.brand};
+    border-color: ${colors.footerText};
     box-shadow: 0 16px 32px rgba(10, 12, 16, 0.08);
   }
 

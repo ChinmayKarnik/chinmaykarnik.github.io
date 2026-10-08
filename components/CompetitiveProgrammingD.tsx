@@ -3,7 +3,6 @@
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
 import Eyebrow from "./Eyebrow";
-import { ArrowRightIcon } from "./icons";
 
 type Row = {
   platform: string;
@@ -120,16 +119,17 @@ const RankBadge = styled.span<{ $accent: string; $tint: string }>`
 `;
 
 const ProfileLink = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
+  display: inline-block;
+  width: fit-content;
   font-size: 13px;
   font-weight: 700;
-  color: ${colors.textMutedLight};
-  text-decoration: none;
+  color: ${colors.text};
+  text-decoration: underline;
+  text-decoration-color: ${colors.textMutedLight};
+  text-underline-offset: 3px;
 
   &:hover {
-    color: ${colors.text};
+    text-decoration-color: ${colors.text};
   }
 `;
 
@@ -165,8 +165,7 @@ export default function CompetitiveProgrammingD() {
                 </RankBadge>
                 {row.url && (
                   <ProfileLink href={row.url} target="_blank" rel="noreferrer">
-                    View profile
-                    <ArrowRightIcon size={13} strokeWidth={2} />
+                    View Profile
                   </ProfileLink>
                 )}
               </MetaRow>
