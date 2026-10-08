@@ -6,7 +6,6 @@ import FeaturedProject from "./FeaturedProject";
 import ArticleList from "./ArticleList";
 import CompetitiveProgramming from "./CompetitiveProgramming";
 import Writing from "./Writing";
-import ShowMoreButton from "./ShowMoreButton";
 
 const ContentContainer = styled(Container)`
   position: relative;
@@ -32,7 +31,6 @@ export default function MainContent() {
         <CompetitiveProgramming />
         <Writing />
       </Stack>
-      <ShowMoreButton />
     </ContentContainer>
   );
 }

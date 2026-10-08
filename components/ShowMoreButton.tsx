@@ -2,12 +2,12 @@
 
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
-import { ArrowRightIcon } from "./icons";
+import { GithubIcon } from "./icons";
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding: 48px 0 80px;
+  padding-top: 36px;
 `;
 
 const Button = styled.a`
@@ -33,8 +33,8 @@ export default function ShowMoreButton() {
   return (
     <Wrapper>
       <Button href="https://github.com/ChinmayKarnik" target="_blank" rel="noreferrer">
+        <GithubIcon size={18} />
         More projects on GitHub
-        <ArrowRightIcon />
       </Button>
     </Wrapper>
   );
