@@ -114,7 +114,7 @@ const IconButton = styled.a`
 
 export default function Footer() {
   return (
-    <FooterWrapper id="contact">
+    <FooterWrapper>
       <FooterMain>
         <SeamMask />
         <HillCapSvg

@@ -6,6 +6,7 @@ import FeaturedProject from "./FeaturedProject";
 import ArticleList from "./ArticleList";
 import CompetitiveProgramming from "./CompetitiveProgramming";
 import Writing from "./Writing";
+import ContactMe from "./ContactMe";
 
 const ContentContainer = styled(Container)`
   position: relative;
@@ -35,6 +36,7 @@ export default function MainContent() {
         <ArticleList />
         <CompetitiveProgramming />
         <Writing />
+        <ContactMe />
       </Stack>
     </ContentContainer>
   );
