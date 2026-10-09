@@ -21,7 +21,7 @@ const POSTS: Post[] = [
     url: "https://dev.to/chinmaykarnik/i-built-my-own-context-index-before-claude-code-had-skills-and-memory-iho",
     excerpt:
       "A personal index-and-retrieval system for keeping project knowledge out of the context window until it's actually needed, built before Claude Code shipped Skills and Memory of its own.",
-    date: "Sep 1, 2026",
+    date: "Sep 2026",
     readingTime: 6,
     tags: ["ai", "claude", "productivity"],
   },
@@ -30,7 +30,7 @@ const POSTS: Post[] = [
     url: "https://dev.to/chinmaykarnik/i-built-fitforge-because-every-weight-training-app-came-with-stuff-i-didnt-ask-for-5573",
     excerpt:
       "Strava doesn't have a real weight training mode, and the apps that do are buried under meal plans and calorie counters. So I built FitForge, a simple app for logging workouts.",
-    date: "Aug 31, 2026",
+    date: "Aug 2026",
     readingTime: 5,
     tags: ["reactnative", "typescript", "androiddev"],
   },
@@ -88,26 +88,11 @@ const PostExcerpt = styled.p`
   margin: 0;
 `;
 
-const PostFooter = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 4px;
-`;
-
-const MetaRow = styled.div`
+const TagRow = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
-`;
-
-const MetaText = styled.span`
-  font-size: 13px;
-  font-weight: 600;
-  color: ${colors.textMutedLight};
 `;
 
 const TagPill = styled.span`
@@ -117,6 +102,21 @@ const TagPill = styled.span`
   background: ${colors.hillLight};
   padding: 3px 10px;
   border-radius: 1000px;
+`;
+
+const PostFooter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 4px;
+`;
+
+const MetaText = styled.span`
+  font-size: 13px;
+  font-weight: 600;
+  color: ${colors.textMutedLight};
 `;
 
 const ReadCta = styled.span`
@@ -139,15 +139,15 @@ export default function Writing() {
             <PostCard href={post.url} target="_blank" rel="noreferrer">
               <PostTitle>{post.title}</PostTitle>
               <PostExcerpt>{post.excerpt}</PostExcerpt>
+              <TagRow>
+                {post.tags.map((tag) => (
+                  <TagPill key={tag}>#{tag}</TagPill>
+                ))}
+              </TagRow>
               <PostFooter>
-                <MetaRow>
-                  <MetaText>
-                    {post.readingTime} min read · {post.date}
-                  </MetaText>
-                  {post.tags.map((tag) => (
-                    <TagPill key={tag}>#{tag}</TagPill>
-                  ))}
-                </MetaRow>
+                <MetaText>
+                  {post.readingTime} min read · {post.date}
+                </MetaText>
                 <ReadCta>
                   Read on dev.to
                   <ArrowRightIcon size={16} strokeWidth={2} />
