@@ -86,8 +86,8 @@ const ctaBase = css`
 
 const PrimaryButton = styled.a`
   ${ctaBase}
-  background: ${colors.showMoreBg};
-  border-color: ${colors.showMoreBg};
+  background: #15803d;
+  border-color: #15803d;
   color: ${colors.white};
 
   &:hover {
@@ -95,26 +95,14 @@ const PrimaryButton = styled.a`
   }
 `;
 
-const IconRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
-`;
-
-const IconButton = styled.a`
-  width: 44px;
-  height: 44px;
-  border-radius: 1000px;
-  background: ${colors.white};
-  color: ${colors.text};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
+const SocialButton = styled.a<{ $bg: string }>`
+  ${ctaBase}
+  background: ${(p) => p.$bg};
+  border-color: ${(p) => p.$bg};
+  color: ${colors.white};
 
   &:hover {
-    color: ${colors.brand};
-    box-shadow: 0 8px 16px rgba(10, 12, 16, 0.1);
+    filter: brightness(1.15);
   }
 `;
 
@@ -133,24 +121,24 @@ export default function ContactMe() {
           <CalendarIcon size={18} />
           Book a call
         </PrimaryButton>
-        <IconRow>
-          <IconButton
-            href="https://github.com/ChinmayKarnik"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="GitHub"
-          >
-            <GithubIcon />
-          </IconButton>
-          <IconButton
-            href="https://www.linkedin.com/in/chinmay-karnik-25a08615b"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn"
-          >
-            <LinkedinIcon />
-          </IconButton>
-        </IconRow>
+        <SocialButton
+          href="https://github.com/ChinmayKarnik"
+          target="_blank"
+          rel="noreferrer"
+          $bg="#181717"
+        >
+          <GithubIcon size={18} />
+          GitHub
+        </SocialButton>
+        <SocialButton
+          href="https://www.linkedin.com/in/chinmay-karnik-25a08615b"
+          target="_blank"
+          rel="noreferrer"
+          $bg="#0a66c2"
+        >
+          <LinkedinIcon size={18} />
+          LinkedIn
+        </SocialButton>
       </ActionRow>
     </Card>
   );
