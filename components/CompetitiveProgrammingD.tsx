@@ -17,8 +17,8 @@ type Row = {
 const ROWS: Row[] = [
   {
     platform: "Codeforces",
-    accent: colors.rainbow[1],
-    tint: "rgba(30, 41, 169, 0.1)",
+    accent: "#ca8a04",
+    tint: "rgba(202, 138, 4, 0.1)",
     display: "2326",
     rank: "International Master",
     url: "https://codeforces.com/profile/ChinmayKarnik",
@@ -26,17 +26,17 @@ const ROWS: Row[] = [
   },
   {
     platform: "CodeChef",
-    accent: colors.rainbow[2],
-    tint: "rgba(111, 41, 210, 0.1)",
+    accent: "#0e7490",
+    tint: "rgba(14, 116, 144, 0.1)",
     display: "2175",
-    rank: "5★, Division 1",
+    rank: "Division 1",
     url: "https://www.codechef.com/users/chinmaykarnik",
     note: "2175 is both where I am right now and the highest I've ever been. CodeChef's long format trades speed for patience, days instead of minutes with a hard idea.",
   },
   {
     platform: "ACM ICPC",
-    accent: colors.rainbow[4],
-    tint: "rgba(248, 47, 117, 0.1)",
+    accent: colors.rainbow[1],
+    tint: "rgba(30, 41, 169, 0.1)",
     display: "2021",
     rank: "Regional Finalist",
     note: "No continuous rating here, just one shot at a whiteboard with two teammates and a shared keyboard. Regionals was the first time this felt like a team sport instead of a solo grind.",
