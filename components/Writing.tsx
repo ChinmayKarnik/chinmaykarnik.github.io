@@ -36,6 +36,14 @@ const POSTS: Post[] = [
   },
 ];
 
+const IntroText = styled.p`
+  font-size: 16px;
+  line-height: 25px;
+  color: ${colors.text};
+  max-width: 640px;
+  margin: 0 0 28px;
+`;
+
 const List = styled.ol`
   list-style: none;
   margin: 0;
@@ -133,6 +141,12 @@ export default function Writing() {
   return (
     <section id="writing">
       <Eyebrow>Writing</Eyebrow>
+      <IntroText>
+        I write mostly as notes to future me, posts that start from something I just
+        built and had to think through. That means tools and workarounds from using AI
+        day to day as an engineer, and the occasional deep dive into a side project
+        like FitForge.
+      </IntroText>
       <List>
         {POSTS.map((post) => (
           <li key={post.title}>
