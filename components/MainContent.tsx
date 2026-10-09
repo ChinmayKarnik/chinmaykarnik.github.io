@@ -5,7 +5,7 @@ import Container from "./Container";
 import FeaturedProject from "./FeaturedProject";
 import ArticleList from "./ArticleList";
 import CompetitiveProgramming from "./CompetitiveProgrammingD";
-import Writing from "./Writing";
+import Writing from "./WritingB";
 import ContactMe from "./ContactMe";
 
 const ContentContainer = styled(Container)`
