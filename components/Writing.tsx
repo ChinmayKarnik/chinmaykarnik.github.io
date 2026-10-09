@@ -3,6 +3,7 @@
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
 import Eyebrow from "./Eyebrow";
+import ShowMoreButton from "./ShowMoreButton";
 import { ArrowRightIcon } from "./icons";
 
 type Post = {
@@ -128,15 +129,6 @@ const ReadCta = styled.span`
   flex-shrink: 0;
 `;
 
-const MoreLink = styled.a`
-  display: inline-block;
-  margin-top: 20px;
-  font-weight: 700;
-  font-size: 14px;
-  color: ${colors.text};
-  text-decoration: underline;
-`;
-
 export default function Writing() {
   return (
     <section id="writing">
@@ -165,9 +157,7 @@ export default function Writing() {
           </li>
         ))}
       </List>
-      <MoreLink href="https://dev.to/chinmaykarnik" target="_blank" rel="noreferrer">
-        More on dev.to
-      </MoreLink>
+      <ShowMoreButton href="https://dev.to/chinmaykarnik" label="More on dev.to" />
     </section>
   );
 }

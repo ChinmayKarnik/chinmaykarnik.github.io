@@ -173,7 +173,9 @@ const PrimaryButton = styled.a`
   color: ${colors.white};
 
   &:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(10, 12, 16, 0.18);
   }
 `;
 
@@ -251,8 +253,11 @@ export default function FeaturedProject() {
         ))}
       </FeatureGrid>
       <ButtonRow>
-        {/* TODO: swap in the real Play Store listing URL */}
-        <PrimaryButton href="#" target="_blank" rel="noreferrer">
+        <PrimaryButton
+          href="https://play.google.com/store/apps/details?id=com.fitforgeapp"
+          target="_blank"
+          rel="noreferrer"
+        >
           <GooglePlayIcon size={18} />
           Get it on Google Play
         </PrimaryButton>

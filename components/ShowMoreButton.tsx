@@ -2,7 +2,6 @@
 
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
-import { GithubIcon } from "./icons";
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,18 +22,27 @@ const Button = styled.a`
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
+  transition: all 0.2s ease;
 
   &:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(10, 12, 16, 0.18);
   }
 `;
 
-export default function ShowMoreButton() {
+type Props = {
+  href: string;
+  label: string;
+  icon?: React.ReactNode;
+};
+
+export default function ShowMoreButton({ href, label, icon }: Props) {
   return (
     <Wrapper>
-      <Button href="https://github.com/ChinmayKarnik" target="_blank" rel="noreferrer">
-        <GithubIcon size={18} />
-        More projects on GitHub
+      <Button href={href} target="_blank" rel="noreferrer">
+        {icon}
+        {label}
       </Button>
     </Wrapper>
   );

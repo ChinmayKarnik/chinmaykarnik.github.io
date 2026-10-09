@@ -3,7 +3,9 @@
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
 import Container from "./Container";
-import { DownloadIcon, GithubIcon, LinkedinIcon } from "./icons";
+import { CalendarIcon, GithubIcon, LinkedinIcon } from "./icons";
+
+const CAL_URL = "https://cal.com/chinmay-karnik-6ygfgj/30min";
 
 const Bar = styled.header`
   background: ${colors.sky};
@@ -107,9 +109,8 @@ export default function Header() {
           >
             <GithubIcon />
           </IconButton>
-          {/* placeholder — no résumé file wired up yet */}
-          <IconButton href="#" aria-label="Résumé">
-            <DownloadIcon />
+          <IconButton href={CAL_URL} target="_blank" rel="noreferrer" aria-label="Book a call">
+            <CalendarIcon />
           </IconButton>
           <IconButton
             href="https://www.linkedin.com/in/chinmay-karnik-25a08615b"

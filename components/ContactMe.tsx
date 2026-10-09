@@ -91,7 +91,9 @@ const PrimaryButton = styled.a`
   color: ${colors.white};
 
   &:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(10, 12, 16, 0.18);
   }
 `;
 
@@ -103,6 +105,8 @@ const SocialButton = styled.a<{ $bg: string }>`
 
   &:hover {
     filter: brightness(1.15);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(10, 12, 16, 0.18);
   }
 `;
 

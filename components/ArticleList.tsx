@@ -50,7 +50,7 @@ const List = styled.div`
 const Card = styled.article`
   background: ${colors.white};
   border: 1px solid ${colors.hillLight};
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 36px 40px;
   box-shadow: 0 16px 32px rgba(10, 12, 16, 0.07);
 
@@ -100,6 +100,10 @@ const Screenshot = styled.img`
 `;
 
 const ShowMoreLink = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
   font-weight: 700;
   font-size: 16px;
   color: ${colors.text};
@@ -208,6 +212,7 @@ export default function ArticleList() {
               {project.url && (
                 <ShowMoreLink href={project.url} target="_blank" rel="noreferrer">
                   View on GitHub
+                  <ArrowRightIcon size={16} strokeWidth={2} />
                 </ShowMoreLink>
               )}
             </Card>
@@ -233,7 +238,11 @@ export default function ArticleList() {
           )
         )}
       </List>
-      <ShowMoreButton />
+      <ShowMoreButton
+        href="https://github.com/ChinmayKarnik"
+        label="More projects on GitHub"
+        icon={<GithubIcon size={18} />}
+      />
     </section>
   );
 }
