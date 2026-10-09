@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { colors } from "@/lib/theme";
 import Eyebrow from "./Eyebrow";
 import ShowMoreButton from "./ShowMoreButton";
-import { ArrowRightIcon } from "./icons";
 
 type Post = {
   title: string;
@@ -125,16 +124,36 @@ const Title = styled.h3`
   }
 `;
 
-const Arrow = styled.span`
-  display: inline-flex;
-  opacity: 0;
-  transform: translateX(-4px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+const Arrow = styled.svg`
+  flex-shrink: 0;
+  width: 26px;
+  height: 14px;
+  overflow: visible;
   color: ${colors.brand};
 
-  ${Row}:hover & {
+  path {
+    opacity: 0;
+    transition: opacity 150ms ease;
+  }
+
+  path:nth-child(2) {
+    transition-delay: 90ms;
+  }
+
+  path:nth-child(3) {
+    transition-delay: 180ms;
+  }
+
+  ${Row}:hover & path {
     opacity: 1;
-    transform: translateX(0);
+  }
+
+  ${Row}:hover & path:nth-child(2) {
+    opacity: 0.7;
+  }
+
+  ${Row}:hover & path:nth-child(3) {
+    opacity: 0.4;
   }
 `;
 
@@ -173,8 +192,17 @@ export default function WritingB() {
               <ContentCol>
                 <TitleRow>
                   <Title>{post.title}</Title>
-                  <Arrow>
-                    <ArrowRightIcon size={18} strokeWidth={2} />
+                  <Arrow
+                    viewBox="0 0 30 12"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={1.8}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M0 1L6 6L0 11" />
+                    <path d="M10 1L16 6L10 11" />
+                    <path d="M20 1L26 6L20 11" />
                   </Arrow>
                 </TitleRow>
                 <Excerpt>{post.excerpt}</Excerpt>
