@@ -47,14 +47,13 @@ const List = styled.ol`
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid ${colors.hillLight};
 `;
 
 const Row = styled.a`
   display: flex;
   gap: 32px;
   padding: 28px 0;
-  border-bottom: 1px solid ${colors.hillLight};
+  border-top: 1px solid ${colors.hillLight};
   color: inherit;
   text-decoration: none;
 
@@ -89,12 +88,12 @@ const DateText = styled.span`
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.3px;
-  color: ${colors.textMutedLight};
+  color: ${colors.textMuted};
 `;
 
 const ReadTimeText = styled.span`
   font-size: 13px;
-  color: ${colors.textMutedLight};
+  color: ${colors.textMuted};
 `;
 
 const ContentCol = styled.div`
@@ -171,6 +170,10 @@ const TagLine = styled.span`
   color: ${colors.footerText};
 `;
 
+const CtaWrapper = styled.div`
+  margin-top: 20px;
+`;
+
 export default function WritingB() {
   return (
     <section id="writing">
@@ -212,7 +215,9 @@ export default function WritingB() {
           </li>
         ))}
       </List>
-      <ShowMoreButton href="https://dev.to/chinmaykarnik" label="More on dev.to" />
+      <CtaWrapper>
+        <ShowMoreButton href="https://dev.to/chinmaykarnik" label="More on dev.to" />
+      </CtaWrapper>
     </section>
   );
 }
