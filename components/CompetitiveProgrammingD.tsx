@@ -22,16 +22,16 @@ const ROWS: Row[] = [
     display: "2326",
     rank: "International Master",
     url: "https://codeforces.com/profile/ChinmayKarnik",
-    note: "The one I actually check obsessively, usually with a Div. 2 or Div. 3 round open in a tab I tell myself I'll just skim. 2326 took a long stretch of plateaus to reach, and Grandmaster is next.",
+    note: "Codeforces was the most competitive and well-known platform, with weekly contests. The problems were original, not the templated interview-style ones. I stuck with it for years and peaked at International Master, 2326.",
   },
   {
     platform: "CodeChef",
     accent: "#0e7490",
     tint: "rgba(14, 116, 144, 0.1)",
-    display: "2175",
-    rank: "Division 1",
+    display: "2318",
+    rank: "6-Star",
     url: "https://www.codechef.com/users/chinmaykarnik",
-    note: "2175 is both where I am right now and the highest I've ever been. CodeChef's long format trades speed for patience, days instead of minutes with a hard idea.",
+    note: "I was also active on CodeChef, especially the long challenges that ran for ten days. With no clock to race, I could try an idea, watch it fail, and just try the next one. Peaked at 2318, 6-Star.",
   },
   {
     platform: "ACM ICPC",
@@ -39,7 +39,7 @@ const ROWS: Row[] = [
     tint: "rgba(30, 41, 169, 0.1)",
     display: "2021",
     rank: "Regional Finalist",
-    note: "No continuous rating here, just one shot at a whiteboard with two teammates and a shared keyboard. Regionals was the first time this felt like a team sport instead of a solo grind.",
+    note: "It was a privilege to be a Regional Finalist at ACM ICPC 2021. My teammates were from college, and the three of us shared one computer, dividing up problems and bouncing ideas off each other the whole round. We went up against the best programmers and colleges in the country.",
   },
 ];
 
@@ -146,10 +146,11 @@ export default function CompetitiveProgrammingD() {
     <section id="competitive-programming">
       <Eyebrow>Competitive Programming</Eyebrow>
       <SectionIntro>
-        Started grinding problems back at VNIT and never really stopped. What began as placement
-        prep turned into a genuine habit, then something closer to three different habits: fast
-        and reflexive, slow and stubborn, and done as a team under pressure. Ratings are a vanity
-        metric, but they&apos;re the most honest scoreboard I&apos;ve got.
+        My brother got me into competitive programming in college. He&apos;d already cracked IOI
+        and was deep in the community, and I came in already primed for it, logic puzzles and
+        math olympiads had been my thing since I was a kid. The combination of problem solving
+        and code stuck fast, and it became my primary hobby for most of college. I still solve
+        the odd problem now, though most of my progress came during the years I was most active.
       </SectionIntro>
       <Table>
         {ROWS.map((row) => (

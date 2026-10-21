@@ -28,7 +28,7 @@ const POSTS: Post[] = [
     title: "I built FitForge because every weight training app came with stuff I didn't ask for",
     url: "https://dev.to/chinmaykarnik/i-built-fitforge-because-every-weight-training-app-came-with-stuff-i-didnt-ask-for-5573",
     excerpt:
-      "Strava doesn't have a real weight training mode, and the apps that do are buried under meal plans and calorie counters. So I built FitForge, a simple app for logging workouts.",
+      "None of the weight training apps I tried did the one thing I wanted, log a workout and see my history. They were bundled with meal plans, calorie counters, and social feeds I never asked for. So I built FitForge, a simple app for logging and tracking workouts.",
     date: "Aug 2026",
     readingTime: 5,
     tags: ["reactnative", "typescript", "androiddev"],
@@ -179,10 +179,9 @@ export default function WritingB() {
     <section id="writing">
       <Eyebrow>Writing</Eyebrow>
       <IntroText>
-        I write mostly as notes to future me, posts that start from something I just
-        built and had to think through. That means tools and workarounds from using AI
-        day to day as an engineer, and the occasional deep dive into a side project
-        like FitForge.
+        I write about things from time to time, usually whatever I&apos;m building or
+        thinking through at the moment. Mostly technical stuff, with the occasional
+        random thought mixed in.
       </IntroText>
       <List>
         {POSTS.map((post) => (
