@@ -135,7 +135,7 @@ export default function ContactMe() {
           GitHub
         </SocialButton>
         <SocialButton
-          href="https://www.linkedin.com/in/chinmay-karnik-25a08615b"
+          href="https://www.linkedin.com/in/chinmay-karnik"
           target="_blank"
           rel="noreferrer"
           $bg="#0a66c2"

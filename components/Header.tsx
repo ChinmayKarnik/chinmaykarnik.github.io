@@ -113,7 +113,7 @@ export default function Header() {
             <CalendarIcon />
           </IconButton>
           <IconButton
-            href="https://www.linkedin.com/in/chinmay-karnik-25a08615b"
+            href="https://www.linkedin.com/in/chinmay-karnik"
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"

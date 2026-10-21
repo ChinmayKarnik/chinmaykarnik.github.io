@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     background: ${colors.sky};
+    scroll-padding-top: 48px;
   }
 
   body {
