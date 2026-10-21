@@ -75,6 +75,10 @@ const Bio = styled.p`
   margin: 0;
 `;
 
+const NoWrap = styled.span`
+  white-space: nowrap;
+`;
+
 const CtaRow = styled.div`
   display: flex;
   gap: 16px;
@@ -156,7 +160,7 @@ export default function IntroSection() {
           I&apos;m a full-stack, AI-native software engineer. I&apos;ve
           previously worked at Zepto, in e-commerce, and Gameskraft, in real
           money gaming. I&apos;m also an avid competitive programmer, an
-          International Master on Codeforces (2326), 6-Star on CodeChef
+          International Master on Codeforces (2326), <NoWrap>6-Star</NoWrap> on CodeChef
           (2318), and a Regional Finalist at ACM ICPC 2021. I also like
           building things on my own time, currently FitForge, a mobile app
           to log, track, and analyze strength training workouts, think

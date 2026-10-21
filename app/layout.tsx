@@ -31,7 +31,8 @@ const wotfard = localFont({
 
 export const metadata: Metadata = {
   title: "Chinmay Karnik",
-  description: "Chinmay Karnik",
+  description:
+    "Software engineer and competitive programmer. Previously at Zepto and Gameskraft, International Master on Codeforces, and building FitForge, a strength training app.",
 };
 
 export default function RootLayout({
