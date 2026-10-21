@@ -151,11 +151,12 @@ export default function IntroSection() {
         <Bio>
           I&apos;m a full-stack, AI-native software engineer. I&apos;ve
           previously worked at Zepto, in e-commerce, and Gameskraft, in real
-          money gaming. I&apos;m also an avid competitive programmer: an
+          money gaming. I&apos;m also an avid competitive programmer, an
           International Master on Codeforces (2326), 6-Star on CodeChef
-          (2318), and a Regional Finalist at ACM ICPC 2021. Right now,
-          I&apos;m building FitForge, a mobile app to log, track, and analyze
-          strength training workouts, think Strava for the gym.
+          (2318), and a Regional Finalist at ACM ICPC 2021. I also like
+          building things on my own time, currently FitForge, a mobile app
+          to log, track, and analyze strength training workouts, think
+          Strava for the gym.
         </Bio>
         <CtaRow>
           <PrimaryCta href="#projects">View Projects</PrimaryCta>
