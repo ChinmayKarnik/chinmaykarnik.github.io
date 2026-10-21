@@ -67,6 +67,15 @@ const HeaderGroup = styled.div`
   margin-bottom: 24px;
 `;
 
+const AppIcon = styled.img`
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 18px;
+  margin: 0 0 20px;
+  box-shadow: 0 10px 20px rgba(10, 12, 16, 0.2);
+`;
+
 const Title = styled.h2`
   font-size: 40px;
   font-weight: 700;
@@ -224,6 +233,7 @@ export default function FeaturedProject() {
     <Card id="projects">
       <HeaderGroup>
         <Eyebrow>Featured Project</Eyebrow>
+        <AppIcon src="/projects/fitforge/app-icon.png" alt="" />
         <Title>FitForge</Title>
         <Tagline>Strava for strength training.</Tagline>
       </HeaderGroup>
