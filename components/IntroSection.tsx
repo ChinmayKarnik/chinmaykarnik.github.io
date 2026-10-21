@@ -10,12 +10,16 @@ const IntroInner = styled(Container)`
   align-items: center;
   justify-content: center;
   gap: 56px;
+  position: relative;
+  z-index: 1;
+  margin-top: -24px;
   padding-top: 8px;
   padding-bottom: 64px;
 
   @media (max-width: 900px) {
     flex-direction: column-reverse;
     text-align: center;
+    margin-top: 0;
     padding-top: 40px;
     padding-bottom: 40px;
     gap: 24px;
