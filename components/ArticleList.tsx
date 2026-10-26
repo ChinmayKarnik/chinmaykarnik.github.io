@@ -2,6 +2,7 @@
 
 import styled from "styled-components";
 import { colors } from "@/lib/theme";
+import useCenterMiddleChild from "@/lib/useCenterMiddleChild";
 import Eyebrow from "./Eyebrow";
 import ShowMoreButton from "./ShowMoreButton";
 import { GithubIcon, ArrowRightIcon } from "./icons";
@@ -124,7 +125,7 @@ const Screenshot = styled.img`
 
   @media (max-width: 640px) {
     width: 200px;
-    scroll-snap-align: start;
+    scroll-snap-align: center;
     box-shadow: 0 12px 24px rgba(10, 12, 16, 0.2);
   }
 `;
@@ -237,6 +238,18 @@ const MiniCta = styled.span`
   color: ${colors.text};
 `;
 
+function ScreenshotStrip({ screenshots }: { screenshots: Screenshot[] }) {
+  const ref = useCenterMiddleChild<HTMLDivElement>();
+
+  return (
+    <ScreenshotRow ref={ref}>
+      {screenshots.map((shot) => (
+        <Screenshot key={shot.src} src={shot.src} alt={shot.alt} />
+      ))}
+    </ScreenshotRow>
+  );
+}
+
 export default function ArticleList() {
   return (
     <section id="other-projects">
@@ -247,11 +260,7 @@ export default function ArticleList() {
             <Card key={project.name}>
               <Title>{project.name}</Title>
               {project.tagline && <Subtitle>{project.tagline}</Subtitle>}
-              <ScreenshotRow>
-                {project.screenshots.map((shot) => (
-                  <Screenshot key={shot.src} src={shot.src} alt={shot.alt} />
-                ))}
-              </ScreenshotRow>
+              <ScreenshotStrip screenshots={project.screenshots} />
               <Description>{project.description}</Description>
               {project.url && (
                 <ShowMoreLink href={project.url} target="_blank" rel="noreferrer">

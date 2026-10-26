@@ -2,6 +2,7 @@
 
 import styled, { css } from "styled-components";
 import { colors } from "@/lib/theme";
+import useCenterMiddleChild from "@/lib/useCenterMiddleChild";
 import Eyebrow from "./Eyebrow";
 import {
   GithubIcon,
@@ -300,7 +301,7 @@ const ScreenshotItem = styled.div`
   flex-shrink: 0;
 
   @media (max-width: 640px) {
-    scroll-snap-align: start;
+    scroll-snap-align: center;
   }
 
   &:nth-child(2) {
@@ -323,6 +324,8 @@ const ScreenshotFrame = styled.img`
 `;
 
 export default function FeaturedProject() {
+  const screenshotRowRef = useCenterMiddleChild<HTMLDivElement>();
+
   return (
     <Card id="projects">
       <HeaderGroup>
@@ -331,7 +334,7 @@ export default function FeaturedProject() {
         <Title>FitForge</Title>
         <Tagline>Strava for strength training.</Tagline>
       </HeaderGroup>
-      <ScreenshotRow>
+      <ScreenshotRow ref={screenshotRowRef}>
         {SCREENSHOTS.map((shot) => (
           <ScreenshotItem key={shot.src}>
             <ScreenshotFrame src={shot.src} alt={shot.alt} />
