@@ -57,6 +57,12 @@ const Card = styled.section`
     padding: 32px 24px;
     gap: 32px;
   }
+
+  @media (max-width: 640px) {
+    margin-top: 16px;
+    margin-bottom: 48px;
+    gap: 28px;
+  }
 `;
 
 const HeaderGroup = styled.div`
@@ -65,6 +71,10 @@ const HeaderGroup = styled.div`
   align-items: center;
   text-align: center;
   margin-bottom: 24px;
+
+  @media (max-width: 640px) {
+    margin-bottom: 0;
+  }
 `;
 
 const AppIcon = styled.img`
@@ -83,6 +93,10 @@ const Title = styled.h2`
   letter-spacing: -0.5px;
   margin: 0 0 10px;
   color: ${colors.text};
+
+  @media (max-width: 640px) {
+    font-size: 34px;
+  }
 `;
 
 const Tagline = styled.p`
@@ -90,6 +104,10 @@ const Tagline = styled.p`
   font-weight: 600;
   color: ${colors.brand};
   margin: 0;
+
+  @media (max-width: 640px) {
+    font-size: 18px;
+  }
 `;
 
 const Description = styled.p`
@@ -99,6 +117,11 @@ const Description = styled.p`
   max-width: 640px;
   text-align: center;
   margin: 0 auto;
+
+  @media (max-width: 640px) {
+    font-size: 16px;
+    line-height: 25px;
+  }
 `;
 
 const FeatureGrid = styled.div`
@@ -108,6 +131,11 @@ const FeatureGrid = styled.div`
   gap: 20px;
   max-width: 720px;
   margin: 0 auto;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
 `;
 
 const FeatureItem = styled.div`
@@ -119,6 +147,11 @@ const FeatureItem = styled.div`
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 10px 24px rgba(10, 12, 16, 0.08);
+
+  @media (max-width: 640px) {
+    padding: 18px 20px;
+    gap: 14px;
+  }
 `;
 
 const FeatureIconBadge = styled.div`
@@ -131,6 +164,11 @@ const FeatureIconBadge = styled.div`
   justify-content: center;
   background: rgba(66, 66, 250, 0.12);
   color: ${colors.brand};
+
+  @media (max-width: 640px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 const FeatureTextCol = styled.div`
@@ -159,6 +197,12 @@ const ButtonRow = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 16px;
+
+  @media (max-width: 640px) {
+    align-self: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
 `;
 
 const ctaBase = css`
@@ -173,6 +217,10 @@ const ctaBase = css`
   font-weight: 700;
   text-decoration: none;
   transition: all 0.2s ease;
+
+  @media (max-width: 640px) {
+    justify-content: center;
+  }
 `;
 
 const PrimaryButton = styled.a`
@@ -186,6 +234,14 @@ const PrimaryButton = styled.a`
     transform: translateY(-1px);
     box-shadow: 0 8px 20px rgba(10, 12, 16, 0.18);
   }
+  /* Touch screens keep :hover after a tap, so undo the lift there. */
+  @media (hover: none) {
+    &:hover {
+      filter: none;
+      transform: none;
+      box-shadow: none;
+    }
+  }
 `;
 
 const SecondaryButton = styled.a`
@@ -198,6 +254,13 @@ const SecondaryButton = styled.a`
     background: ${colors.showMoreBg};
     color: ${colors.white};
   }
+
+  @media (hover: none) {
+    &:hover {
+      background: transparent;
+      color: ${colors.showMoreBg};
+    }
+  }
 `;
 
 const ScreenshotRow = styled.div`
@@ -205,15 +268,40 @@ const ScreenshotRow = styled.div`
   justify-content: center;
   gap: 28px;
 
+  /* align-self/min-width stop the row from sizing to its content as a flex
+     item of the centered Card, which pushed it past the page edge. */
   @media (max-width: 900px) {
+    align-self: stretch;
+    min-width: 0;
     overflow-x: auto;
     justify-content: flex-start;
+    padding-top: 24px;
     padding-bottom: 4px;
+  }
+
+  /* Full-bleed swipe strip: the negative margin cancels the card's 24px side
+     padding, and the vertical padding keeps the raised middle shot and the
+     drop shadows inside the scroll box. */
+  @media (max-width: 640px) {
+    gap: 16px;
+    margin: 0 -24px;
+    padding: 28px 24px 36px;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 24px;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 `;
 
 const ScreenshotItem = styled.div`
   flex-shrink: 0;
+
+  @media (max-width: 640px) {
+    scroll-snap-align: start;
+  }
 
   &:nth-child(2) {
     transform: translateY(-20px);
@@ -226,6 +314,12 @@ const ScreenshotFrame = styled.img`
   height: auto;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(10, 12, 16, 0.22);
+
+  @media (max-width: 640px) {
+    width: 200px;
+    border-radius: 18px;
+    box-shadow: 0 12px 24px rgba(10, 12, 16, 0.2);
+  }
 `;
 
 export default function FeaturedProject() {

@@ -82,6 +82,12 @@ const BottomBar = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
+
+  @media (max-width: 640px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    gap: 8px;
+  }
 `;
 
 const Copyright = styled.span`

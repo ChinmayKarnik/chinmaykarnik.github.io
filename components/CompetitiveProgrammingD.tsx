@@ -67,6 +67,12 @@ const RowItem = styled.div`
     grid-template-columns: 1fr;
     gap: 10px;
     padding: 24px 0;
+
+    /* No border below the last row, so its padding only widened the gap
+       to the next section. */
+    &:last-child {
+      padding-bottom: 0;
+    }
   }
 `;
 
@@ -130,6 +136,12 @@ const ProfileLink = styled.a`
 
   &:hover {
     text-decoration-color: ${colors.text};
+  }
+
+  /* Bigger tap area on phones; the negative margin keeps the layout as is. */
+  @media (max-width: 640px) {
+    padding: 10px 0;
+    margin: -10px 0;
   }
 `;
 

@@ -172,6 +172,10 @@ const TagLine = styled.span`
 
 const CtaWrapper = styled.div`
   margin-top: 20px;
+
+  @media (max-width: 640px) {
+    margin-top: 0;
+  }
 `;
 
 export default function WritingB() {

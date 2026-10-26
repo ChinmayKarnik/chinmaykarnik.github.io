@@ -72,6 +72,11 @@ const Subtitle = styled.p`
   font-weight: 600;
   color: ${colors.textMuted};
   margin: 0;
+
+  /* The global 24px line-height reads gappy once this wraps on phones. */
+  @media (max-width: 640px) {
+    line-height: 21px;
+  }
 `;
 
 const Description = styled.p`
@@ -80,6 +85,10 @@ const Description = styled.p`
   color: ${colors.text};
   max-width: 640px;
   margin: 16px 0;
+
+  @media (max-width: 640px) {
+    margin-top: 0;
+  }
 `;
 
 const ScreenshotRow = styled.div`
@@ -88,6 +97,21 @@ const ScreenshotRow = styled.div`
   margin: 20px 0 24px;
   overflow-x: auto;
   padding-bottom: 4px;
+
+  /* Full-bleed swipe strip; negative margin cancels the card's 24px side
+     padding, bottom padding keeps the drop shadows inside the scroll box. */
+  @media (max-width: 640px) {
+    gap: 16px;
+    margin: 12px -24px 0;
+    padding: 12px 24px 32px;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 24px;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
 const Screenshot = styled.img`
@@ -97,6 +121,12 @@ const Screenshot = styled.img`
   height: auto;
   border-radius: 16px;
   box-shadow: 0 16px 32px rgba(10, 12, 16, 0.2);
+
+  @media (max-width: 640px) {
+    width: 200px;
+    scroll-snap-align: start;
+    box-shadow: 0 12px 24px rgba(10, 12, 16, 0.2);
+  }
 `;
 
 const ShowMoreLink = styled.a`
@@ -135,6 +165,15 @@ const MiniEntry = styled.a`
     box-shadow: 0 16px 32px rgba(10, 12, 16, 0.08);
   }
 
+  /* Touch screens keep :hover after a tap, so undo it there. */
+  @media (hover: none) {
+    &:hover {
+      border-color: ${colors.hillLight};
+      border-left-color: ${colors.sky};
+      box-shadow: none;
+    }
+  }
+
   @media (max-width: 640px) {
     padding: 24px;
   }
@@ -170,6 +209,11 @@ const MiniTagline = styled.p`
   font-weight: 600;
   color: ${colors.textMuted};
   margin: 0;
+
+  /* The global 24px line-height reads gappy once this wraps on phones. */
+  @media (max-width: 640px) {
+    line-height: 20px;
+  }
 `;
 
 const MiniDescription = styled.p`

@@ -19,6 +19,14 @@ const GlobalStyle = createGlobalStyle`
     scroll-padding-top: 48px;
   }
 
+  /* Stops iOS Safari from enlarging text when a phone is turned sideways. */
+  @media (max-width: 900px) {
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+  }
+
   body {
     font-family: var(--font-body), sans-serif;
     color: ${colors.text};

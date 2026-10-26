@@ -29,6 +29,14 @@ const Button = styled.a`
     transform: translateY(-1px);
     box-shadow: 0 8px 20px rgba(10, 12, 16, 0.18);
   }
+  /* Touch screens keep :hover after a tap, so undo the lift there. */
+  @media (hover: none) {
+    &:hover {
+      filter: none;
+      transform: none;
+      box-shadow: none;
+    }
+  }
 `;
 
 type Props = {

@@ -20,6 +20,18 @@ const BarInner = styled(Container)`
   padding-top: 48px;
   padding-bottom: 16px;
   flex-wrap: wrap;
+
+  /* Below desktop the nav moves to its own row (see Nav), so the rows
+     only need a small gap between them. */
+  @media (max-width: 900px) {
+    row-gap: 8px;
+  }
+
+  /* Smaller gap keeps the icons on the logo's row on narrow phones. */
+  @media (max-width: 640px) {
+    gap: 16px;
+    padding-top: 28px;
+  }
 `;
 
 const Logo = styled.a`
@@ -34,6 +46,14 @@ const Logo = styled.a`
 const Nav = styled.nav`
   display: flex;
   gap: 8px;
+
+  /* Logo and icons share the top row; the links take a full row under them.
+     The negative margin lines the first link's text up with the logo. */
+  @media (max-width: 900px) {
+    order: 3;
+    flex-basis: 100%;
+    margin-left: -16px;
+  }
 
   @media (max-width: 640px) {
     display: none;
@@ -63,6 +83,10 @@ const IconGroup = styled.div`
   align-items: center;
   color: ${colors.text};
   margin-left: auto;
+
+  @media (max-width: 359px) {
+    gap: 8px;
+  }
 `;
 
 const IconButton = styled.a`
@@ -79,6 +103,14 @@ const IconButton = styled.a`
   justify-content: center;
   transition: all 0.2s ease;
   text-decoration: none;
+
+  /* Bigger tap area on phones; the negative margin keeps the icons where
+     they were. */
+  @media (max-width: 640px) {
+    width: 40px;
+    height: 40px;
+    margin: -4px;
+  }
 `;
 
 const NAV_ITEMS = [

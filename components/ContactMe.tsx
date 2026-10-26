@@ -34,6 +34,8 @@ const Heading = styled.h2`
 
   @media (max-width: 640px) {
     font-size: 26px;
+    line-height: 1.25;
+    text-wrap: balance;
   }
 `;
 
@@ -68,6 +70,14 @@ const ActionRow = styled.div`
   justify-content: center;
   gap: 16px;
   margin-top: 8px;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-self: stretch;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: 0;
+  }
 `;
 
 const ctaBase = css`
@@ -82,6 +92,10 @@ const ctaBase = css`
   font-weight: 700;
   text-decoration: none;
   transition: all 0.2s ease;
+
+  @media (max-width: 640px) {
+    justify-content: center;
+  }
 `;
 
 const PrimaryButton = styled.a`
@@ -95,6 +109,14 @@ const PrimaryButton = styled.a`
     transform: translateY(-1px);
     box-shadow: 0 8px 20px rgba(10, 12, 16, 0.18);
   }
+  /* Touch screens keep :hover after a tap, so undo the lift there. */
+  @media (hover: none) {
+    &:hover {
+      filter: none;
+      transform: none;
+      box-shadow: none;
+    }
+  }
 `;
 
 const SocialButton = styled.a<{ $bg: string }>`
@@ -107,6 +129,14 @@ const SocialButton = styled.a<{ $bg: string }>`
     filter: brightness(1.15);
     transform: translateY(-1px);
     box-shadow: 0 8px 20px rgba(10, 12, 16, 0.18);
+  }
+  /* Touch screens keep :hover after a tap, so undo the lift there. */
+  @media (hover: none) {
+    &:hover {
+      filter: none;
+      transform: none;
+      box-shadow: none;
+    }
   }
 `;
 

@@ -24,6 +24,11 @@ const IntroInner = styled(Container)`
     padding-bottom: 40px;
     gap: 24px;
   }
+
+  @media (max-width: 640px) {
+    padding-top: 16px;
+    padding-bottom: 32px;
+  }
 `;
 
 const TextCol = styled.div`
@@ -66,6 +71,12 @@ const Tagline = styled.p`
   line-height: 33px;
   color: ${colors.brand};
   margin: 0;
+
+  @media (max-width: 640px) {
+    font-size: 19px;
+    line-height: 27px;
+    text-wrap: balance;
+  }
 `;
 
 const Bio = styled.p`
@@ -88,6 +99,10 @@ const CtaRow = styled.div`
   @media (max-width: 900px) {
     justify-content: center;
   }
+
+  @media (max-width: 640px) {
+    align-self: stretch;
+  }
 `;
 
 const ctaBase = css`
@@ -101,6 +116,14 @@ const ctaBase = css`
   border: 2px solid transparent;
   text-decoration: none;
   transition: all 0.2s ease;
+
+  /* Equal halves of the column on phones; wraps to full-width rows when
+     both labels can't fit side by side. */
+  @media (max-width: 640px) {
+    flex: 1 1 0;
+    justify-content: center;
+    white-space: nowrap;
+  }
 `;
 
 const PrimaryCta = styled.a`
@@ -111,6 +134,13 @@ const PrimaryCta = styled.a`
 
   &:hover {
     filter: brightness(1.15);
+  }
+
+  /* Touch screens keep :hover after a tap, so undo it there. */
+  @media (hover: none) {
+    &:hover {
+      filter: none;
+    }
   }
 `;
 
@@ -123,6 +153,13 @@ const SecondaryCta = styled.a`
   &:hover {
     background: ${colors.showMoreBg};
     color: ${colors.white};
+  }
+
+  @media (hover: none) {
+    &:hover {
+      background: transparent;
+      color: ${colors.showMoreBg};
+    }
   }
 `;
 
